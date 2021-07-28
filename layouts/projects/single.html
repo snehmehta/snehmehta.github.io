@@ -1,0 +1,175 @@
+{{- define "main" }}
+
+<header class="post-header">
+    {{ partial "breadcrumbs.html" . }}
+    {{- if .Description }}
+    <div class="post-description">
+        {{ .Description }}
+    </div>
+    {{- end }}
+    {{- if not (.Param "hideMeta") }}
+    <div class="post-meta">
+        {{- partial "post_meta.html" . -}}
+        {{- partial "translation_list.html" . -}}
+        {{- partial "edit_post.html" . -}}
+    </div>
+    {{- end }}
+</header>
+
+<section class="start_home demo3">
+    <div class="bubbles-animate">
+        <div class="bubble b_one"></div>
+        <div class="bubble b_two"></div>
+        <div class="bubble b_three"></div>
+        <div class="bubble b_four"></div>
+        <div class="bubble b_five"></div>
+        <div class="bubble b_six"></div>
+    </div>
+    <div class="banner_top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 start-home-content">
+                    <span>{{ .Params.leading }}</span>
+                    <h1>
+                        {{ .Title }}
+                    </h1>
+                    <p>
+                        {{ .Params.subTitle }}
+                    </p>
+                    <div class="app-button">
+                        <div class="apple-button">
+                            <a href="#">
+                                <div class="slider-button-icon">
+                                    <i class="fab fa-apple" aria-hidden="true"></i>
+                                </div>
+                                <div class="slider-button-title">
+                                    <p>from App store</p>
+                                    <h3>app store</h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="google-button">
+                            <a href="#">
+                                <div class="slider-button-icon">
+                                    <i class="fab fa-google-play" aria-hidden="true"></i>
+                                </div>
+                                <div class="slider-button-title">
+                                    <p>From Play Store</p>
+                                    <h3>Google Play</h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-md-6 start-home-img">
+                    <img class="img-fluid" src="images/faq2.PNG" alt="Img" />
+                </div> -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="appScreenshots" class="section-block" >
+
+    <div class="container">
+        <div class="section-header">
+            <h2>App Screenshots</h2>
+            <p>
+                Efficiently syndicate flexible content via cost effective initiatives completely leverage vertical
+                quality.<br>
+                Turn your mobile visitors into your best customers.
+            </p>
+        </div>
+
+        <div class="list_screen_slide owl-carousel ">
+            {{ range .Params.screenshots }}
+           
+            <div class="item">
+                <a href="{{ . | relURL }}" >
+                    <img src="{{ . | relURL }}" alt="{{ . | relURL }}">
+                </a>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+
+<section id="AppFeatures" class="section-block features-style3" data-scroll-index="1">
+    <div class="bubbles-animate">
+        <div class="bubble b_one"></div>
+        <div class="bubble b_two"></div>
+        <div class="bubble b_three"></div>
+        <div class="bubble b_four"></div>
+        <div class="bubble b_five"></div>
+        <div class="bubble b_six"></div>
+    </div>
+    <div class="container">
+        <div class="row d-flex align-items-center">
+            <div class="col-lg-6">
+                <div class="section-header-style2">
+                    <h2>Revolutionize Your Online App Business Today!</h2>
+                    <p>
+                        Efficiently syndicate flexible content via cost effective initiatives completely leverage
+                        vertical quality.<br>
+                        Turn your mobile visitors into your best customers.
+                    </p>
+                    <div class="btn-read-more"><a class="btn theme-btn" href="#">Get Started Now</a></div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="row">
+                    <!-- Start Features item -->
+                    <div class="col-md-6">
+                        <div class="feature-block">
+                            <span class="feature-icon">
+                                <i class="flaticon flaticon-idea"></i>
+                            </span>
+                            <h3>Trendy Look</h3>
+                            <p>We provide marketing to businesses to looking for a partner digital media.</p>
+                        </div>
+                    </div>
+                    <!-- End Features item -->
+
+                    <!-- Start Features item -->
+                    <div class="col-md-6">
+                        <div class="feature-block offset-top">
+                            <span class="feature-icon">
+                                <i class="flaticon flaticon-layers"></i>
+                            </span>
+                            <h3>Very Secured</h3>
+                            <p>We provide marketing to businesses to looking for a partner digital media.</p>
+                        </div>
+                    </div>
+                    <!-- End Features item -->
+
+                    <!-- Start Features item -->
+                    <div class="col-md-6">
+                        <div class="feature-block">
+                            <span class="feature-icon">
+                                <i class="flaticon flaticon-fingerprint"></i>
+                            </span>
+                            <h3>Digital Marketing</h3>
+                            <p>We provide marketing to businesses to looking for a partner digital media.</p>
+                        </div>
+                    </div>
+                    <!-- End Features item -->
+
+                    <!-- Start Features item -->
+                    <div class="col-md-6">
+                        <div class="feature-block offset-top">
+                            <span class="feature-icon">
+                                <i class="flaticon flaticon-app"></i>
+                            </span>
+                            <h3>Report Analysis</h3>
+                            <p>We provide marketing to businesses to looking for a partner digital media.</p>
+                        </div>
+                    </div>
+                    <!-- End Features item -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{{- end }}{{/* end main */}}

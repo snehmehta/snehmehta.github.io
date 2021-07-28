@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Posts on Sneh Mehta</title>
-    <link>http://example.org/post/</link>
+    <link>http://snehmehta.dev/post/</link>
     <description>Recent content in Posts on Sneh Mehta</description>
     <image>
-      <url>http://example.org/papermod-cover.png</url>
-      <link>http://example.org/papermod-cover.png</link>
+      <url>http://snehmehta.dev/papermod-cover.png</url>
+      <link>http://snehmehta.dev/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 29 Jun 2021 00:17:18 +0530</lastBuildDate><atom:link href="http://example.org/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 29 Jun 2021 00:17:18 +0530</lastBuildDate><atom:link href="http://snehmehta.dev/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>First</title>
-      <link>http://example.org/post/first/</link>
+      <link>http://snehmehta.dev/post/first/</link>
       <pubDate>Tue, 29 Jun 2021 00:17:18 +0530</pubDate>
       
-      <guid>http://example.org/post/first/</guid>
+      <guid>http://snehmehta.dev/post/first/</guid>
       <description>You are awesome thanks for visiting my site</description>
     </item>
     

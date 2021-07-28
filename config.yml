@@ -1,4 +1,4 @@
-baseURL: http://snehmehta.vercel.app/
+baseURL: http://snehmehta.dev/
 languageCode: en-us
 title: Sneh Mehta
 theme: "PaperMod"
@@ -8,7 +8,7 @@ params:
     ShowBreadCrumbs: true
     ShowCodeCopyButtons: true
     ShowToc: true
-    # comments: false
+    comments: true
     images: ["papermod-cover.png"]
 
 
@@ -20,10 +20,10 @@ params:
         # imageWidth: 120
         # imageHeight: 120
         buttons:
-            - name: Archives
-              url: archives
-            - name: Tags
-              url: tags
+            - name: Archive
+              url: "/archive"
+            - name: Github
+              url: "https://github.com/"
 
     homeInfoParams:
         Title: "Hi there! "
@@ -41,14 +41,19 @@ menu:
     main:
         - identifier: projects
           name: Projects
-          url: /tags/
+          url: /projects/
           weight: 10
+        - identifier: post
+          name: Blog
+          url: /post/
+          weight: 20       
         - identifier: categories
           name: Categories
           url: /categories/
-          weight: 20
-        - identifier: tags
-          name: Tags
-          url: /tags/
-          weight: 30
+          weight: 30       
+        - identifier: archives
+          name: Archives
+          url: /archives/
+          weight: 40
+
         
