@@ -15,7 +15,6 @@
     </div>
     {{- end }}
 </header>
-
 <section class="start_home demo3">
     <div class="bubbles-animate">
         <div class="bubble b_one"></div>
@@ -25,52 +24,60 @@
         <div class="bubble b_five"></div>
         <div class="bubble b_six"></div>
     </div>
+    
     <div class="banner_top">
         <div class="container">
             <div class="row">
+                <div class="col-md-6 start-home-img">
+                    <img class="img-fluid" src="{{ .Params.image }}" alt="{{ .Params.image | relURL }}" />
+                </div>
                 <div class="col-md-6 start-home-content">
-                    <span>{{ .Params.leading }}</span>
-                    <h1>
-                        {{ .Title }}
-                    </h1>
+                    <span> {{ .Params.leading }}</span>
+                    <h1>{{ .Params.title }}</h1>
                     <p>
-                        {{ .Params.subTitle }}
+                        {{ range .Params.technology }}
+                        {{ . }},
+                        {{ end }}
                     </p>
+                    <p>{{ .Params.subTitle }}</p>
                     <div class="app-button">
+                        {{ if .Params.ios }}
                         <div class="apple-button">
                             <a href="#">
                                 <div class="slider-button-icon">
                                     <i class="fab fa-apple" aria-hidden="true"></i>
                                 </div>
                                 <div class="slider-button-title">
-                                    <p>from App store</p>
-                                    <h3>app store</h3>
+                                    <p>IOS</p>
+                                    <h3>App store</h3>
                                 </div>
                             </a>
                         </div>
+                        {{ end }}
+                        {{ if .Params.android }}
+                            
+                        
                         <div class="google-button">
-                            <a href="#">
+                            <a href="{{ .Params.android }}">
                                 <div class="slider-button-icon">
                                     <i class="fab fa-google-play" aria-hidden="true"></i>
                                 </div>
                                 <div class="slider-button-title">
-                                    <p>From Play Store</p>
+                                    <p>Android</p>
                                     <h3>Google Play</h3>
                                 </div>
                             </a>
                         </div>
+                        {{ end }}
                     </div>
                 </div>
-                <!-- <div class="col-md-6 start-home-img">
-                    <img class="img-fluid" src="images/faq2.PNG" alt="Img" />
-                </div> -->
+                
             </div>
         </div>
     </div>
 </section>
 
 <section id="appScreenshots" class="section-block" >
-
     <div class="container">
         <div class="section-header">
             <h2>App Screenshots</h2>
@@ -83,16 +90,16 @@
 
         <div class="list_screen_slide owl-carousel ">
             {{ range .Params.screenshots }}
-           
             <div class="item">
-                <a href="{{ . | relURL }}" >
-                    <img src="{{ . | relURL }}" alt="{{ . | relURL }}">
+                <a href="{{ . }}" >
+                    <img src="{{ . }}" alt="{{ . }}">
                 </a>
             </div>
             {{ end }}
         </div>
     </div>
 </section>
+
 
 <section id="AppFeatures" class="section-block features-style3" data-scroll-index="1">
     <div class="bubbles-animate">

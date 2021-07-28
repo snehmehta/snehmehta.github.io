@@ -8,10 +8,12 @@ title: "EQuick"
 leading: "Ecommerce with seller and admin app"
 subTitle: "EQuick is complete ecommerce solution with seller, admin and client app in both android and IOS."
 
-screenshots: ["images/equick/Home Page.png", "images/equick/Shimmer.png", "images/equick/Profile.png","images/equick/Checkout.png","images/equick/Shipping.png", "images/equick/Order.png"]
+screenshots: ["images/Home Page.png", "images/Shimmer.png", "images/Profile.png","images/Checkout.png","images/Shipping.png", "images/Order.png"]
 
 
-image: images/equick/iphone.png
+image: images/iphone.png
 technology: ["Flutter", "Nodejs","Mongodb"]
+
+android: "https://drive.google.com/file/d/1J1JE9lcJ0TsLf8weruVQ_lp0cdUxGCPT/view?usp=sharing"
 ---
 

@@ -26,7 +26,7 @@ params:
               url: "https://github.com/"
 
     homeInfoParams:
-        Title: "Hi there! "
+        Title: "Hi there! 👋"
         Content: >
             Welcome I'll be documenting my journey over this site.
             
