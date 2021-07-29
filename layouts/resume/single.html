@@ -1,0 +1,34 @@
+{{- define "main" }}
+
+
+
+{{ range .Site.Data.education }}
+<div class="item">
+	<h2 class="item-title">{{ .name }}</h2>
+	<span>{{ .university }}</span><br>
+	<span>{{ .date }}{{ if .gpa }} | GPA: {{ .gpa }}{{ end }}</span>
+</div>
+{{ end }}
+
+
+<div class="grid">
+    <header class="flex-row">
+        {{ partial "header" (dict "Header" .Site.Params.header "Data" .Site.Data "useFontAwesome" .Site.Params.useFontAwesome) }}
+    </header>
+
+    {{ range  .Site.Params.pages }}
+    <div class="left-column">
+        {{ range .features }}
+            {{ partial "section" (dict "Feature" . "Data" $.Site.Data "useFontAwesome" $.Site.Params.useFontAwesome) }}
+        {{ end }}
+    </div>
+    {{ end }}
+
+    <div class="right-column">
+        {{ range .Site.Params.side }}
+            {{ partial "section" (dict "Feature" . "Data" $.Site.Data "useFontAwesome" $.Site.Params.useFontAwesome) }}
+        {{ end }}
+    </div>
+</div>
+
+{{- end }}{{/* end main */}}

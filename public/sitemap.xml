@@ -3,50 +3,62 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://snehmehta.dev/projects/aatman/</loc>
+    <loc>/projects/aatman/</loc>
     <lastmod>2021-07-09T18:21:06+05:30</lastmod>
   </url>
   
   <url>
-    <loc>http://snehmehta.dev/projects/</loc>
+    <loc>/projects/</loc>
     <lastmod>2021-07-09T18:21:06+05:30</lastmod>
   </url>
   
   <url>
-    <loc>http://snehmehta.dev/</loc>
+    <loc>/</loc>
     <lastmod>2021-07-09T18:21:06+05:30</lastmod>
   </url>
   
   <url>
-    <loc>http://snehmehta.dev/projects/dtrust/</loc>
+    <loc>/projects/dtrust/</loc>
     <lastmod>2021-07-08T01:03:08+05:30</lastmod>
   </url>
   
   <url>
-    <loc>http://snehmehta.dev/projects/equick/</loc>
+    <loc>/projects/equick/</loc>
     <lastmod>2021-07-08T01:03:08+05:30</lastmod>
   </url>
   
   <url>
-    <loc>http://snehmehta.dev/post/first/</loc>
-    <lastmod>2021-06-29T00:17:18+05:30</lastmod>
+    <loc>/post/pay/</loc>
+    <lastmod>2021-05-19T11:02:33+05:30</lastmod>
   </url>
   
   <url>
-    <loc>http://snehmehta.dev/post/</loc>
-    <lastmod>2021-06-29T00:17:18+05:30</lastmod>
+    <loc>/post/</loc>
+    <lastmod>2021-05-19T11:02:33+05:30</lastmod>
   </url>
   
   <url>
-    <loc>http://snehmehta.dev/archives/</loc>
+    <loc>/archives/</loc>
   </url>
   
   <url>
-    <loc>http://snehmehta.dev/categories/</loc>
+    <loc>/categories/</loc>
   </url>
   
   <url>
-    <loc>http://snehmehta.dev/tags/</loc>
+    <loc>/resume/</loc>
+  </url>
+  
+  <url>
+    <loc>/resume/</loc>
+  </url>
+  
+  <url>
+    <loc>/search/</loc>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
   </url>
   
 </urlset>

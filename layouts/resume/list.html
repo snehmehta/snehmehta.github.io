@@ -1,0 +1,40 @@
+{{ define "main" }}
+
+
+<div class="paper">
+    <div class="grid">
+        
+        <div class="about">
+            {{ partial "resume-header" (dict "Header" .Site.Params.header "Data" .Site.Data.resume "useFontAwesome" .Site.Params.useFontAwesome) }}
+        </div>
+
+        
+    
+
+        {{ range first 1 .Site.Params.pages }}
+        <div class="left-column">
+            {{ range .features }}
+                {{ partial "section" (dict "Feature" . "Data" $.Site.Data.resume "useFontAwesome" $.Site.Params.useFontAwesome) }}
+            {{ end }}
+        </div>
+        {{ end }}
+
+        <div class="right-column">
+            {{ range .Site.Params.side }}
+                {{ partial "section" (dict "Feature" . "Data" $.Site.Data.resume "useFontAwesome" $.Site.Params.useFontAwesome) }}
+            {{ end }}
+        </div>
+    </div>
+</div>
+
+{{/*  {{ range after 1 .Site.Params.pages }}
+<article class="paper">
+    {{ range .features }}
+        {{ partial "section" (dict "Feature" . "Data" $.Site.Data.resume "useFontAwesome" $.Site.Params.useFontAwesome) }}
+    {{ end }}
+</article>
+{{ end }}  */}}
+
+
+
+{{ end }}

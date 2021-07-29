@@ -1,14 +1,23 @@
-baseURL: http://snehmehta.dev/
+baseURL: /
 languageCode: en-us
 title: Sneh Mehta
 theme: "PaperMod"
 
+disableThemeToggle: true
+
 params:
+    env: production
     ShowPostNavLinks: true
     ShowBreadCrumbs: true
     ShowCodeCopyButtons: true
     ShowToc: true
     comments: true
+    defaultTheme: light
+    ShowShareButtons: true
+    ShowReadingTime: true
+    ShowPostNavLinks: true
+    
+    
     images: ["papermod-cover.png"]
 
 
@@ -28,13 +37,43 @@ params:
     homeInfoParams:
         Title: "Hi there! 👋"
         Content: >
-            Welcome I'll be documenting my journey over this site.
+            Welcome, I'll be documenting my journey over this site.
             
     socialIcons:
         - name: Github
           url: "https://github.com/snehmehta"
         - name: RSS
           url: "index.xml"
+
+    header:
+      avatar: avatar.jpg
+      contact: true
+      tagline: true
+      links: false
+
+    pages:
+      - features:
+          - feature: about
+            title: About Me
+          - feature: experience
+      - features:
+          - feature: projects
+            collection: projects
+          - feature: awards
+          - feature: certificates
+            title: Certifications
+          # - feature: interests
+          #   widget: word-list
+          #   style: list
+
+    side:
+      - feature: skills
+        widget: word-list
+        style: compact # list, compact, title-list
+      - feature: education
+      - feature: interests
+        widget: word-list
+        style: list
 
 
 menu:
@@ -47,13 +86,20 @@ menu:
           name: Blog
           url: /post/
           weight: 20       
-        - identifier: categories
-          name: Categories
-          url: /categories/
-          weight: 30       
-        - identifier: archives
-          name: Archives
-          url: /archives/
-          weight: 40
+             
+        - identifier: resume
+          name: Resume
+          url: /resume/
+          weight: 30
+
+        - identifier: search
+          name: Search
+          url: /search/
+          weight: 40  
 
         
+outputs:
+    home:
+        - HTML
+        - RSS
+        - JSON # is necessary

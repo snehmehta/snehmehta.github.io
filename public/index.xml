@@ -2,49 +2,59 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Sneh Mehta</title>
-    <link>http://snehmehta.dev/</link>
+    <link>/</link>
     <description>Recent content on Sneh Mehta</description>
     <image>
-      <url>http://snehmehta.dev/papermod-cover.png</url>
-      <link>http://snehmehta.dev/papermod-cover.png</link>
+      <url>/papermod-cover.png</url>
+      <link>/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 09 Jul 2021 18:21:06 +0530</lastBuildDate><atom:link href="http://snehmehta.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 09 Jul 2021 18:21:06 +0530</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Aatam</title>
-      <link>http://snehmehta.dev/projects/aatman/</link>
+      <link>/projects/aatman/</link>
       <pubDate>Fri, 09 Jul 2021 18:21:06 +0530</pubDate>
       
-      <guid>http://snehmehta.dev/projects/aatman/</guid>
+      <guid>/projects/aatman/</guid>
       <description></description>
     </item>
     
     <item>
       <title>DTrust </title>
-      <link>http://snehmehta.dev/projects/dtrust/</link>
+      <link>/projects/dtrust/</link>
       <pubDate>Thu, 08 Jul 2021 01:03:08 +0530</pubDate>
       
-      <guid>http://snehmehta.dev/projects/dtrust/</guid>
+      <guid>/projects/dtrust/</guid>
       <description>dtrust is great</description>
     </item>
     
     <item>
       <title>EQuick</title>
-      <link>http://snehmehta.dev/projects/equick/</link>
+      <link>/projects/equick/</link>
       <pubDate>Thu, 08 Jul 2021 01:03:08 +0530</pubDate>
       
-      <guid>http://snehmehta.dev/projects/equick/</guid>
+      <guid>/projects/equick/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>First</title>
-      <link>http://snehmehta.dev/post/first/</link>
-      <pubDate>Tue, 29 Jun 2021 00:17:18 +0530</pubDate>
+      <title>Monetizing Flutter app with Google and Apple Pay</title>
+      <link>/post/pay/</link>
+      <pubDate>Wed, 19 May 2021 11:02:33 +0530</pubDate>
       
-      <guid>http://snehmehta.dev/post/first/</guid>
-      <description>You are awesome thanks for visiting my site</description>
+      <guid>/post/pay/</guid>
+      <description>Monetizing Flutter app with Google and Apple Pay</description>
+    </item>
+    
+    
+    <item>
+      <title>Resume</title>
+      <link>/resume/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/resume/</guid>
+      <description>resume</description>
     </item>
     
     
