@@ -1,9 +1,14 @@
-baseURL: https://www.snehmehta.dev/
+baseURL: https://snehmehta.dev/
 languageCode: en-us
 title: Sneh Mehta
 theme: "PaperMod"
 
-disableThemeToggle: true
+enableInlineShortcodes: true
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+enableEmoji: true
 
 params:
     env: production
@@ -16,6 +21,7 @@ params:
     ShowShareButtons: true
     ShowReadingTime: true
     ShowPostNavLinks: true
+
     
     
     images: ["papermod-cover.png"]
