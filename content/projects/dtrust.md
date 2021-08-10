@@ -13,5 +13,3 @@ features:
 - Life is good
 ---
 
-dtrust is great
-
