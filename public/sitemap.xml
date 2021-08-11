@@ -1,64 +1,38 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://snehmehta.dev/projects/aatman/</loc>
     <lastmod>2021-07-09T18:21:06+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snehmehta.dev/projects/</loc>
     <lastmod>2021-07-09T18:21:06+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snehmehta.dev/</loc>
     <lastmod>2021-07-09T18:21:06+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snehmehta.dev/projects/dtrust/</loc>
     <lastmod>2021-07-08T01:03:08+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snehmehta.dev/projects/equick/</loc>
     <lastmod>2021-07-08T01:03:08+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snehmehta.dev/post/pay/</loc>
     <lastmod>2021-05-19T11:02:33+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snehmehta.dev/post/</loc>
     <lastmod>2021-05-19T11:02:33+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snehmehta.dev/archives/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snehmehta.dev/categories/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snehmehta.dev/resume/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snehmehta.dev/resume/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snehmehta.dev/search/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snehmehta.dev/tags/</loc>
   </url>
-  
 </urlset>
