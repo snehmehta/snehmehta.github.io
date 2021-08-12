@@ -17,7 +17,7 @@ params:
     ShowCodeCopyButtons: true
     ShowToc: true
     comments: true
-    defaultTheme: light
+    defaultTheme: dark
     ShowShareButtons: true
     ShowReadingTime: true
     ShowPostNavLinks: true

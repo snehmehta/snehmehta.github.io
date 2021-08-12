@@ -10,6 +10,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+<<<<<<< Updated upstream
     <lastBuildDate>Fri, 09 Jul 2021 18:21:06 +0530</lastBuildDate><atom:link href="https://snehmehta.dev/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Aatam</title>
@@ -29,6 +30,9 @@
       <description>dtrust is great</description>
     </item>
     
+=======
+    <lastBuildDate>Thu, 08 Jul 2021 01:03:08 +0530</lastBuildDate><atom:link href="https://snehmehta.dev/index.xml" rel="self" type="application/rss+xml" />
+>>>>>>> Stashed changes
     <item>
       <title>EQuick</title>
       <link>https://snehmehta.dev/projects/equick/</link>
@@ -39,6 +43,7 @@
     </item>
     
     <item>
+<<<<<<< Updated upstream
       <title>Monetizing Flutter app with Google and Apple Pay</title>
       <link>https://snehmehta.dev/post/pay/</link>
       <pubDate>Wed, 19 May 2021 11:02:33 +0530</pubDate>
@@ -55,6 +60,14 @@
       
       <guid>https://snehmehta.dev/resume/</guid>
       <description>resume</description>
+=======
+      <title>My 1st post</title>
+      <link>https://snehmehta.dev/post/first/</link>
+      <pubDate>Tue, 15 Sep 2020 11:30:03 +0000</pubDate>
+      
+      <guid>https://snehmehta.dev/post/first/</guid>
+      <description>Desc Text.</description>
+>>>>>>> Stashed changes
     </item>
     
     
