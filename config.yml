@@ -17,10 +17,11 @@ params:
     ShowCodeCopyButtons: true
     ShowToc: true
     comments: true
-    defaultTheme: dark
+    defaultTheme: light
     ShowShareButtons: true
     ShowReadingTime: true
     ShowPostNavLinks: true
+    disableThemeToggle: true
 
     
     
