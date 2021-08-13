@@ -42,6 +42,15 @@ interests:
   - AI Applications
   - Optimization Problems
 
+languages:
+  - name: Turkish
+    level: Native
+
+  - name: English
+    level: Professional
+    certificates:
+      - "YDS: 86.25 - 2018"
+      - "TOEFL: 109 - 2021"
 
 # This will use the default widget: "details-list"
 awards:
