@@ -23,7 +23,10 @@ params:
     ShowPostNavLinks: true
     disableThemeToggle: true
 
-    
+
+    assets:
+      favicon: "/favicon.ico"
+      favicon32x32:  "/favicon-32x32.png"    
     
     images: ["papermod-cover.png"]
 
@@ -53,7 +56,7 @@ params:
           url: "index.xml"
 
     header:
-      avatar: avatar.jpg
+      avatar: me.jpg
       contact: true
       tagline: true
       links: false
@@ -81,6 +84,7 @@ params:
       - feature: interests
         widget: word-list
         style: list
+
 
 
 menu:
