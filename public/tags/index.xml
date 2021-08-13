@@ -9,20 +9,6 @@
       <link>https://snehmehta.dev/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-<<<<<<< Updated upstream
     <language>en-us</language><atom:link href="https://snehmehta.dev/tags/index.xml" rel="self" type="application/rss+xml" />
-=======
-    <language>en-us</language>
-    <lastBuildDate>Tue, 15 Sep 2020 11:30:03 +0000</lastBuildDate><atom:link href="https://snehmehta.dev/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>first</title>
-      <link>https://snehmehta.dev/tags/first/</link>
-      <pubDate>Tue, 15 Sep 2020 11:30:03 +0000</pubDate>
-      
-      <guid>https://snehmehta.dev/tags/first/</guid>
-      <description></description>
-    </item>
-    
->>>>>>> Stashed changes
   </channel>
 </rss>

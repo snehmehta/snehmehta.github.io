@@ -35,9 +35,8 @@ skills:
       - Linux - CentOS RHEL
 
 interests:
-  - Data Science
+  - Full Stack
   - AI Applications
-  - Optimization Problems
 
 languages:
   - name: Turkish
@@ -51,21 +50,13 @@ languages:
 
 # This will use the default widget: "details-list"
 awards:
-  - title: "Tübitak - Graduation Project"
-    date: "2017"
-    subtitle: "A Decision Support System for 3D Cutting Problem"
+  - title: "TCS Humain 2019"
+    date: "2019"
+    subtitle: "1st Runner Up in all India level A.I competition hosted by TCS"
     #details: |
     #   - add more here if you like to.
     #   - or just comment out/delete the field.
-    links:
-      - title: example
-        url: https://mertbakir.gitlab.io
-        icon: fas fa-bolt
-        prefix: "This is an " # use quotation marks if you want to pass the tailing space.
-      - title: second link.
-        url: https://esdfdsfdsf
-        icon: "-" # you can get rid of the icon by entering dummy text
-        prefix: "omg"
+ 
 
 certificates:
   - title: "Supervised Learning: Regression"

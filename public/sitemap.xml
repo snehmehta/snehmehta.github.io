@@ -2,7 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-<<<<<<< Updated upstream
     <loc>https://snehmehta.dev/projects/aatman/</loc>
     <lastmod>2021-07-09T18:21:06+05:30</lastmod>
   </url><url>
@@ -35,31 +34,5 @@
     <loc>https://snehmehta.dev/search/</loc>
   </url><url>
     <loc>https://snehmehta.dev/tags/</loc>
-=======
-    <loc>https://snehmehta.dev/projects/equick/</loc>
-    <lastmod>2021-07-08T01:03:08+05:30</lastmod>
-  </url><url>
-    <loc>https://snehmehta.dev/projects/</loc>
-    <lastmod>2021-07-08T01:03:08+05:30</lastmod>
-  </url><url>
-    <loc>https://snehmehta.dev/</loc>
-    <lastmod>2021-07-08T01:03:08+05:30</lastmod>
-  </url><url>
-    <loc>https://snehmehta.dev/tags/first/</loc>
-    <lastmod>2020-09-15T11:30:03+00:00</lastmod>
-  </url><url>
-    <loc>https://snehmehta.dev/post/first/</loc>
-    <lastmod>2020-09-15T11:30:03+00:00</lastmod>
-  </url><url>
-    <loc>https://snehmehta.dev/post/</loc>
-    <lastmod>2020-09-15T11:30:03+00:00</lastmod>
-  </url><url>
-    <loc>https://snehmehta.dev/tags/</loc>
-    <lastmod>2020-09-15T11:30:03+00:00</lastmod>
-  </url><url>
-    <loc>https://snehmehta.dev/categories/</loc>
-  </url><url>
-    <loc>https://snehmehta.dev/search/</loc>
->>>>>>> Stashed changes
   </url>
 </urlset>

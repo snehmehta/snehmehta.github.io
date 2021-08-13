@@ -69,21 +69,22 @@ params:
       - features:
           - feature: projects
             collection: projects
-          - feature: awards
           - feature: certificates
             title: Certifications
-          # - feature: interests
-          #   widget: word-list
-          #   style: list
+          - feature: interests
+            widget: word-list
+            style: list
 
     side:
       - feature: skills
         widget: word-list
         style: compact # list, compact, title-list
       - feature: education
+      - feature: awards
       - feature: interests
         widget: word-list
         style: list
+
 
 
 
