@@ -2,7 +2,7 @@
 
 <main class="paper">
     <div class="grid">
-        <header class="flex-row">
+        <header class="resume-header flex-row">
             {{ partial "resume/header" (dict "Header" .Site.Params.header "Data" .Site.Data.resume "useFontAwesome" .Site.Params.useFontAwesome) }}
         </header>
 
@@ -22,13 +22,7 @@
     </div>
 </main>
 
-{{ range after 1 .Site.Params.pages }}
-<article class="paper">
-    {{ range .features }}
-        {{ partial "resume/section" (dict "Feature" . "Data" $.Site.Data.resume "useFontAwesome" $.Site.Params.useFontAwesome) }}
-    {{ end }}
-</article>
-{{ end }}
+
 
 
 {{- end }}{{/* end main */}}
