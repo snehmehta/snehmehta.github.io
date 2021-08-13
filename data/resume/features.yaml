@@ -1,23 +1,20 @@
 about:
-  name: Mert Bakir
-  tagline: Data Scientist
-  phone: "5070*4****"
-  email: yourmail@yourdomain
+  name: Sneh Mehta
+  tagline: Software engineer
+  phone: "+91 8866879221"
+  email: hey@snehmehta.dev
   links:
-    - title: /in/mertbakir
-      url: https://tr.linkedin.com/in/mertbakir
+    - title: /in/snehmehta
+      url: https://tr.linkedin.com/in/snehmehta
       icon: fab fa-linkedin
-    - title: mertbakir
-      url: https://gitlab.com/mertbakir/
+    - title: snehmehta
+      url: https://gitlab.com/snehmehta/
       icon: fab fa-gitlab
-    - title: mertbakir
-      url: https://github.com/mertbakir
+    - title: snehmehta
+      url: https://github.com/snehmehta
       icon: fab fa-github
   details: |
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare sollicitudin fringilla.
-    Aenean nec volutpat arcu. Maecenas quis tempus risus. Curabitur condimentum ligula in erat pharetra porta.
-
-    Nam suscipit nisi a bibendum lacinia.
+    Creator
 
 
 skills:
