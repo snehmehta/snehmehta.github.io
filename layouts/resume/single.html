@@ -1,28 +1,5 @@
 {{- define "main" }}
 
-<main class="paper">
-    <div class="grid">
-        <header class="resume-header flex-row">
-            {{ partial "resume/header" (dict "Header" .Site.Params.header "Data" .Site.Data.resume "useFontAwesome" .Site.Params.useFontAwesome) }}
-        </header>
-
-        {{ range first 1 .Site.Params.pages }}
-        <div class="left-column">
-            {{ range .features }}
-                {{ partial "resume/section" (dict "Feature" . "Data" $.Site.Data.resume "useFontAwesome" $.Site.Params.useFontAwesome) }}
-            {{ end }}
-        </div>
-        {{ end }}
-
-        <div class="right-column">
-            {{ range .Site.Params.side }}
-                {{ partial "resume/section" (dict "Feature" . "Data" $.Site.Data.resume "useFontAwesome" $.Site.Params.useFontAwesome) }}
-            {{ end }}
-        </div>
-    </div>
-</main>
-
-
-
+<embed src="Sneh Mehta.pdf" width="800px" height="1080px" />
 
 {{- end }}{{/* end main */}}

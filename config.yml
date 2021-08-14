@@ -22,6 +22,7 @@ params:
     ShowReadingTime: true
     ShowPostNavLinks: true
     disableThemeToggle: true
+    underConstruction: true
 
 
     assets:
@@ -48,6 +49,7 @@ params:
         Title: "Hi there! 👋"
         Content: >
             Welcome, I'll be documenting my journey over this site.
+        
             
     socialIcons:
         - name: Github
