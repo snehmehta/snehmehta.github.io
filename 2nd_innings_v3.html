@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>2nd Innings — Product & GTM Strategy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --ink:#1a1a18;--muted:#5a5a56;--hint:#9a9a94;
+  --border:rgba(30,30,20,.10);--border2:rgba(30,30,20,.22);
+  --surface:#f5f4ef;--card:#fff;
+  --green-bg:#e1f5ee;--green-bd:#5dcaa5;--green-tx:#085041;
+  --amber-bg:#faeeda;--amber-bd:#ef9f27;--amber-tx:#633806;
+  --purple-bg:#e8e6fd;--purple-bd:#afa9ec;--purple-tx:#3c3489;
+  --blue-bg:#dceeff;--blue-bd:#90c0f0;--blue-tx:#0c447c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#fff;font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);font-size:14px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.doc{max-width:860px;margin:0 auto;padding:0 48px 80px}
+
+/* COVER */
+.cover{padding:52px 0 36px;border-bottom:2px solid var(--ink);margin-bottom:0}
+.cover-agency{font-family:'Instrument Serif',Georgia,serif;font-size:14px;font-style:italic;color:var(--muted);margin-bottom:8px}
+.cover-title{font-size:32px;font-weight:500;letter-spacing:-.5px;line-height:1.1;color:var(--ink);margin-bottom:8px}
+.cover-sub{font-size:13px;color:var(--muted);font-family:'DM Mono',monospace;margin-bottom:28px;letter-spacing:.01em}
+.cover-meta{display:grid;grid-template-columns:1fr 1fr;border-top:0.5px solid var(--border2);padding-top:16px}
+.cm-col{display:flex;flex-direction:column;gap:4px}
+.cm-col:last-child{text-align:right}
+.cm-item{font-size:12px;color:var(--muted);font-family:'DM Mono',monospace;line-height:1.8}
+.cm-item strong{color:var(--ink);font-weight:500}
+
+/* NAV */
+.sticky-nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:0.5px solid var(--border2);padding:0 48px;margin:0 -48px;display:flex;gap:0;overflow-x:auto}
+.nav-item{padding:11px 16px;font-size:11px;font-family:'DM Mono',monospace;letter-spacing:.5px;color:var(--hint);white-space:nowrap;border-bottom:2px solid transparent;text-decoration:none;transition:color .15s,border-color .15s;display:flex;align-items:center;gap:6px}
+.nav-item:hover{color:var(--ink)}
+.nav-item.active{color:var(--ink);border-bottom-color:var(--ink)}
+.nav-num{font-size:9px;opacity:.5}
+
+/* SECTION */
+.section{padding-top:56px;margin-bottom:8px}
+.sec-num{font-size:10px;font-family:'DM Mono',monospace;letter-spacing:2px;color:var(--hint);margin-bottom:3px;text-transform:uppercase}
+.sec-title{font-size:20px;font-weight:500;color:var(--ink);margin-bottom:6px;padding-bottom:12px;border-bottom:0.5px solid var(--border2)}
+.sec-intro{font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:24px}
+.sec-intro strong{color:var(--ink);font-weight:500}
+
+/* INFOBOX */
+.infobox{border-radius:10px;padding:13px 16px;margin-bottom:16px}
+.infobox.green{background:var(--green-bg);border:0.5px solid var(--green-bd)}
+.infobox.amber{background:var(--amber-bg);border:0.5px solid var(--amber-bd)}
+.infobox.purple{background:var(--purple-bg);border:0.5px solid var(--purple-bd)}
+.infobox.blue{background:var(--blue-bg);border:0.5px solid var(--blue-bd)}
+.infobox-title{font-size:11px;font-weight:500;font-family:'DM Mono',monospace;letter-spacing:.5px;margin-bottom:5px;text-transform:uppercase}
+.infobox.green .infobox-title{color:var(--green-tx)}
+.infobox.amber .infobox-title{color:var(--amber-tx)}
+.infobox.purple .infobox-title{color:var(--purple-tx)}
+.infobox.blue .infobox-title{color:var(--blue-tx)}
+.infobox-body{font-size:12px;line-height:1.65;color:var(--muted)}
+.infobox-body strong{color:var(--ink);font-weight:500}
+
+/* METRIC STRIP */
+.metric-strip{display:grid;grid-template-columns:repeat(3,1fr);border:1.5px solid var(--ink);border-radius:12px;overflow:hidden;margin-bottom:28px}
+.metric-cell{padding:20px 22px;border-right:0.5px solid var(--border2)}
+.metric-cell:last-child{border-right:none}
+.metric-label{font-size:10px;font-family:'DM Mono',monospace;letter-spacing:.5px;color:var(--hint);text-transform:uppercase;margin-bottom:6px}
+.metric-val{font-family:'Instrument Serif',Georgia,serif;font-size:28px;font-weight:400;color:var(--ink);line-height:1;margin-bottom:5px}
+.metric-sub{font-size:11px;color:var(--muted)}
+
+/* LOOP */
+.loop-wrap{margin:28px 0}
+.loop-step{display:grid;grid-template-columns:36px 1fr;gap:0;align-items:stretch}
+.loop-left{display:flex;flex-direction:column;align-items:center}
+.loop-circle{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:11px;font-family:'DM Mono',monospace;font-weight:500;color:var(--ink);background:#fff;flex-shrink:0;position:relative;z-index:1}
+.loop-circle.filled{background:var(--ink);color:#fff}
+.loop-line{width:1px;background:var(--border2);flex:1;margin:0 auto}
+.loop-content{padding:0 0 32px 22px}
+.loop-tag{font-size:10px;font-family:'DM Mono',monospace;letter-spacing:.5px;text-transform:uppercase;color:var(--hint);margin-bottom:4px}
+.loop-title{font-size:15px;font-weight:500;color:var(--ink);margin-bottom:5px}
+.loop-desc{font-size:12px;color:var(--muted);line-height:1.65}
+.loop-card{background:var(--surface);border:0.5px solid var(--border2);border-radius:8px;padding:12px 14px;margin-top:10px;font-size:12px;color:var(--muted);line-height:1.6}
+.loop-card strong{color:var(--ink);font-weight:500}
+
+/* WA MOCKUP */
+.wa-bubble-wrap{background:#e5ddd5;border-radius:12px;padding:14px;margin-top:12px;max-width:300px}
+.wa-header{display:flex;align-items:center;gap:8px;margin-bottom:12px;padding-bottom:10px;border-bottom:0.5px solid rgba(0,0,0,.1)}
+.wa-avatar{width:32px;height:32px;border-radius:50%;background:#085041;color:#fff;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;flex-shrink:0}
+.wa-name{font-size:12px;font-weight:500;color:#1a1a18}
+.wa-status{font-size:10px;color:#5a5a56;font-family:'DM Mono',monospace}
+.wa-msg{background:#fff;border-radius:8px;border-bottom-left-radius:2px;padding:10px 12px;font-size:12px;color:#1a1a18;line-height:1.6;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.wa-img{background:#c5b9a8;border-radius:6px;height:100px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;position:relative;overflow:hidden}
+.wa-img-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.45));padding:6px 8px;font-size:9px;color:#fff;font-family:'DM Mono',monospace}
+.wa-time{font-size:10px;color:#9a9a94;text-align:right;margin-top:6px;font-family:'DM Mono',monospace}
+.wa-link-pill{display:inline-block;background:#085041;color:#fff;border-radius:5px;padding:5px 10px;font-size:10px;font-weight:500;margin-top:6px;font-family:'DM Mono',monospace}
+
+/* PHONE MOCKUPS — wider, more breathing room */
+.mockup-row{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin:28px 0}
+.phone-wrap{display:flex;flex-direction:column;align-items:center;gap:12px}
+.phone-label-sm{font-size:10px;font-family:'DM Mono',monospace;letter-spacing:.5px;color:var(--hint);text-transform:uppercase;text-align:center}
+.phone-shell{background:#111;border-radius:28px;padding:9px;border:4px solid #1c1c1c;width:100%;max-width:200px}
+.phone-screen-inner{border-radius:20px;overflow:hidden;background:#fff}
+.pscreen{padding:18px 14px;display:flex;flex-direction:column;gap:8px;background:#fff;min-height:360px}
+.ps-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:2px}
+.ps-logo{font-size:12px;font-weight:500;color:var(--ink);font-family:'Instrument Serif',Georgia,serif}
+.ps-notif{width:20px;height:20px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center}
+.ps-notif-dot{width:7px;height:7px;border-radius:50%;background:#fff}
+.ps-divider{height:0.5px;background:var(--border2);margin:2px 0}
+.ps-section{font-size:9px;font-family:'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--hint);margin:4px 0 3px}
+.ps-label{font-size:9px;font-family:'DM Mono',monospace;letter-spacing:.05em;text-transform:uppercase;color:var(--hint);margin-bottom:2px}
+.ps-field{border:0.5px solid var(--border2);border-radius:7px;padding:7px 10px;font-size:11px;color:var(--muted);background:#fff}
+.ps-btn-main{background:var(--ink);color:#fff;border-radius:8px;padding:9px 0;font-size:11px;font-weight:500;text-align:center}
+.ps-btn-note{font-size:9px;color:var(--hint);text-align:center;font-family:'DM Mono',monospace;margin-top:3px}
+.ps-photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.ps-photo{border-radius:7px;height:68px;display:flex;align-items:center;justify-content:center;font-size:26px}
+.ps-share-btn{background:var(--ink);color:#fff;border-radius:8px;padding:9px 0;font-size:11px;font-weight:500;text-align:center}
+.ps-share-sub{font-size:9px;color:var(--muted);text-align:center;font-family:'DM Mono',monospace}
+.ps-event-card{border:0.5px solid var(--border2);border-radius:8px;overflow:hidden}
+.ps-event-img{height:76px;background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:30px;border-bottom:0.5px solid var(--border)}
+.ps-event-body{padding:8px 10px}
+.ps-event-title{font-size:11px;font-weight:500;color:var(--ink)}
+.ps-event-meta{font-size:10px;color:var(--muted);margin:2px 0}
+.ps-event-spots{font-size:10px;color:var(--green-tx);font-family:'DM Mono',monospace}
+.ps-event-foot{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
+.ps-price{font-size:11px;font-weight:500;color:var(--ink);font-family:'DM Mono',monospace}
+.ps-subscribe-badge{font-size:9px;font-family:'DM Mono',monospace;padding:3px 8px;border-radius:4px;background:var(--green-bg);color:var(--green-tx)}
+.ps-class-item{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:0.5px solid var(--border)}
+.ps-class-item:last-child{border-bottom:none}
+.ps-class-icon{width:28px;height:28px;border-radius:7px;background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.ps-class-info{flex:1}
+.ps-class-title{font-size:11px;font-weight:500;color:var(--ink)}
+.ps-class-meta{font-size:9px;color:var(--muted)}
+.ps-join-btn{font-size:9px;font-family:'DM Mono',monospace;padding:3px 8px;border-radius:4px;background:var(--purple-bg);color:var(--purple-tx);white-space:nowrap}
+
+/* BUILD TABLE */
+.build-table-wrap{border:0.5px solid var(--border2);border-radius:10px;overflow:hidden;margin-bottom:16px}
+.build-table{width:100%;border-collapse:collapse}
+.build-table th{font-size:10px;font-family:'DM Mono',monospace;letter-spacing:1px;text-transform:uppercase;color:var(--hint);text-align:left;padding:9px 16px;border-bottom:0.5px solid var(--border2);font-weight:500;background:var(--surface)}
+.build-table td{font-size:12px;padding:11px 16px;vertical-align:top;border-bottom:0.5px solid var(--border);color:var(--muted);line-height:1.55}
+.build-table tr:last-child td{border-bottom:none}
+.build-table td:first-child{color:var(--ink);font-weight:500;font-size:13px;white-space:nowrap;width:160px}
+.build-table td strong{color:var(--ink);font-weight:500}
+.tag-build{font-size:10px;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:4px;display:inline-block;margin-bottom:5px}
+.tag-custom{background:var(--purple-bg);color:var(--purple-tx)}
+.tag-shelf{background:var(--green-bg);color:var(--green-tx)}
+.tag-link{background:var(--blue-bg);color:var(--blue-tx)}
+
+/* HIRE CARD */
+.hire-card{border:0.5px solid var(--border2);border-radius:10px;overflow:hidden;margin-bottom:14px}
+.hire-card-head{padding:12px 16px;background:var(--surface);border-bottom:0.5px solid var(--border2);display:flex;align-items:baseline;gap:10px}
+.hire-card-role{font-size:15px;font-weight:500;color:var(--ink)}
+.hire-card-type{font-size:11px;font-family:'DM Mono',monospace;color:var(--hint)}
+.hire-card-body{padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.hire-item{display:flex;gap:10px;font-size:12px;color:var(--muted);line-height:1.55;align-items:flex-start}
+.hire-item::before{content:'—';color:var(--border2);flex-shrink:0;margin-top:1px}
+.hire-item strong{color:var(--ink);font-weight:500}
+
+/* FUNNEL */
+.funnel-wrap{margin:24px 0;display:flex;flex-direction:column;gap:0;align-items:stretch}
+.funnel-row{display:flex;align-items:stretch;gap:0;margin-bottom:0}
+.funnel-block{flex:1;border:0.5px solid var(--border2);padding:14px 18px;position:relative}
+.funnel-block:first-child{border-radius:10px 10px 0 0;border-bottom:none}
+.funnel-block:last-child{border-radius:0 0 10px 10px}
+.funnel-block:not(:first-child):not(:last-child){border-bottom:none}
+.funnel-label{font-size:10px;font-family:'DM Mono',monospace;letter-spacing:.5px;text-transform:uppercase;color:var(--hint);margin-bottom:4px}
+.funnel-title{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:3px}
+.funnel-desc{font-size:12px;color:var(--muted);line-height:1.55}
+.funnel-arrow{text-align:center;font-size:16px;color:var(--border2);padding:4px 0;border-left:0.5px solid var(--border2);border-right:0.5px solid var(--border2);background:var(--surface)}
+.funnel-tag{font-size:10px;font-family:'DM Mono',monospace;padding:2px 8px;border-radius:4px;position:absolute;right:14px;top:14px}
+.ft-green{background:var(--green-bg);color:var(--green-tx)}
+.ft-amber{background:var(--amber-bg);color:var(--amber-tx)}
+.ft-purple{background:var(--purple-bg);color:var(--purple-tx)}
+.ft-blue{background:var(--blue-bg);color:var(--blue-tx)}
+
+/* TIMELINE */
+.timeline{display:flex;flex-direction:column;gap:0;margin:24px 0}
+.tl-row{display:grid;grid-template-columns:110px 1fr;gap:0}
+.tl-left{display:flex;flex-direction:column;align-items:flex-end;padding-right:22px;padding-top:3px}
+.tl-week{font-size:10px;font-family:'DM Mono',monospace;letter-spacing:.5px;color:var(--hint);text-transform:uppercase;text-align:right;line-height:1.5}
+.tl-right{border-left:1.5px solid var(--border2);padding-left:22px;padding-bottom:30px}
+.tl-dot-wrap{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.tl-dot{width:10px;height:10px;border-radius:50%;background:var(--ink);margin-left:-27px;flex-shrink:0}
+.tl-title{font-size:14px;font-weight:500;color:var(--ink)}
+.tl-context{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:10px;padding-left:0}
+.tl-items{display:flex;flex-direction:column;gap:6px}
+.tl-item{display:flex;gap:8px;font-size:12px;color:var(--muted);line-height:1.55;align-items:flex-start}
+.tl-who{font-size:9px;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:3px;flex-shrink:0;margin-top:2px;letter-spacing:.2px;text-transform:uppercase}
+.tw-dev{background:var(--blue-bg);color:var(--blue-tx)}
+.tw-mkt{background:var(--green-bg);color:var(--green-tx)}
+.tw-ops{background:var(--amber-bg);color:var(--amber-tx)}
+.tl-outcome{background:var(--surface);border:0.5px solid var(--border2);border-radius:7px;padding:8px 12px;margin-top:8px;font-size:11px;color:var(--muted);line-height:1.5}
+.tl-outcome strong{color:var(--ink);font-weight:500}
+
+@media(max-width:640px){
+  .doc{padding:0 20px 60px}
+  .sticky-nav{padding:0 20px;margin:0 -20px}
+  .metric-strip{grid-template-columns:1fr}
+  .metric-cell{border-right:none;border-bottom:0.5px solid var(--border2)}
+  .mockup-row{grid-template-columns:1fr 1fr}
+  .phone-shell{max-width:160px}
+}
+</style>
+</head>
+<body>
+<div class="doc">
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-agency">2nd Innings — Product & GTM Strategy</div>
+  <div class="cover-title">Build it right.<br>Grow it fast.</div>
+  <div class="cover-sub">Senior community app · UAE · Contact-loop growth · April 2026</div>
+  <div class="cover-meta">
+    <div class="cm-col">
+      <div class="cm-item"><strong>Product</strong> 2nd Innings — 50+ community app</div>
+      <div class="cm-item"><strong>Market</strong> UAE · Senior citizens</div>
+      <div class="cm-item"><strong>Model</strong> AED 20/month subscription</div>
+    </div>
+    <div class="cm-col">
+      <div class="cm-item"><strong>Current members</strong> 30 paying</div>
+      <div class="cm-item"><strong>Target</strong> 100 paying · Day 30</div>
+      <div class="cm-item"><strong>Version</strong> 1.0 · Confidential</div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="sticky-nav" id="main-nav">
+  <a class="nav-item active" href="#s1"><span class="nav-num">01</span>The loop</a>
+  <a class="nav-item" href="#s2"><span class="nav-num">02</span>Meetup funnel</a>
+  <a class="nav-item" href="#s3"><span class="nav-num">03</span>What to build</a>
+  <a class="nav-item" href="#s4"><span class="nav-num">04</span>Screens</a>
+  <a class="nav-item" href="#s5"><span class="nav-num">05</span>Fitness</a>
+  <a class="nav-item" href="#s6"><span class="nav-num">06</span>Who to hire</a>
+  <a class="nav-item" href="#s7"><span class="nav-num">07</span>30-day plan</a>
+</nav>
+
+<!-- ══════════════════════════════════
+     01 — THE LOOP
+══════════════════════════════════ -->
+<div class="section" id="s1">
+  <div class="sec-num">Section 01</div>
+  <div class="sec-title">The growth loop — every member is the engine</div>
+
+  <div class="metric-strip">
+    <div class="metric-cell">
+      <div class="metric-label">From</div>
+      <div class="metric-val">30</div>
+      <div class="metric-sub">Paying members today</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Target</div>
+      <div class="metric-val">100</div>
+      <div class="metric-sub">Paying subscribers · Day 30</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Subscription</div>
+      <div class="metric-val">AED 20</div>
+      <div class="metric-sub">Per month · simple, low friction</div>
+    </div>
+  </div>
+
+  <div class="sec-intro">The growth engine is not ads or content. It is <strong>the existing member's contact list.</strong> Every senior in this community has a phone full of people exactly like them — same age, same city, same needs. The app gives them a natural reason to share. The weekly meetup is the spark that starts each cycle.</div>
+
+  <div class="loop-wrap">
+
+    <div class="loop-step">
+      <div class="loop-left">
+        <div class="loop-circle filled">01</div>
+        <div class="loop-line"></div>
+      </div>
+      <div class="loop-content">
+        <div class="loop-tag">trigger</div>
+        <div class="loop-title">Weekly meetup happens</div>
+        <div class="loop-desc">Physical event — morning walk, yoga, coffee. Team member captures candid photos. This is the content moment that powers everything downstream.</div>
+      </div>
+    </div>
+
+    <div class="loop-step">
+      <div class="loop-left">
+        <div class="loop-circle filled">02</div>
+        <div class="loop-line"></div>
+      </div>
+      <div class="loop-content">
+        <div class="loop-tag">content goes live</div>
+        <div class="loop-title">Photos uploaded to app · members notified</div>
+        <div class="loop-desc">Team uploads event photos. All attending members get a WhatsApp notification: <em>"Your photos from today are live in the app."</em> They open the app to see themselves.</div>
+      </div>
+    </div>
+
+    <div class="loop-step">
+      <div class="loop-left">
+        <div class="loop-circle filled">03</div>
+        <div class="loop-line"></div>
+      </div>
+      <div class="loop-content">
+        <div class="loop-tag">the share moment</div>
+        <div class="loop-title">Member shares to their contacts</div>
+        <div class="loop-desc">One tap in the app opens WhatsApp with their photo + a pre-written message. Their own contacts — friends, family, neighbours — see it. This is not a cold ad. It is a trusted person sharing a real moment.</div>
+        <div class="wa-bubble-wrap">
+          <div class="wa-header">
+            <div class="wa-avatar">RK</div>
+            <div>
+              <div class="wa-name">Ramesh to Family Group</div>
+              <div class="wa-status">WhatsApp · just now</div>
+            </div>
+          </div>
+          <div class="wa-msg">
+            <div class="wa-img">
+              <span style="font-size:28px">📸</span>
+              <div class="wa-img-overlay">Marina Seniors Meetup · Apr 12</div>
+            </div>
+            Had such a wonderful morning with 2nd Innings today 🌅<br><br>
+            Join us next Saturday if you want to come →
+            <br>
+            <span class="wa-link-pill">Join 2nd Innings</span>
+            <div class="wa-time">10:32 AM ✓✓</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="loop-step">
+      <div class="loop-left">
+        <div class="loop-circle filled">04</div>
+        <div class="loop-line"></div>
+      </div>
+      <div class="loop-content">
+        <div class="loop-tag">acquisition</div>
+        <div class="loop-title">Contact attends the next meetup</div>
+        <div class="loop-desc">The invited contact comes to the next physical meetup — free first visit. They meet real people, feel the community. Trust is built in person, not through a screen.</div>
+        <div class="loop-card">
+          <strong>Why the meetup is the top of funnel:</strong> No app, no content, no ad converts a 60-year-old faster than standing in a group of their peers for one morning. The meetup is the product demo. Everything else is logistics.
+        </div>
+      </div>
+    </div>
+
+    <div class="loop-step">
+      <div class="loop-left">
+        <div class="loop-circle filled">05</div>
+        <div class="loop-line"></div>
+      </div>
+      <div class="loop-content">
+        <div class="loop-tag">conversion</div>
+        <div class="loop-title">They subscribe — AED 20/month</div>
+        <div class="loop-desc">After attending, they download the app and subscribe. Low friction — AED 20 is a coffee. No need to think about it. Subscription unlocks the full community: classes, gallery, upcoming events.</div>
+      </div>
+    </div>
+
+    <div class="loop-step">
+      <div class="loop-left">
+        <div class="loop-circle">↻</div>
+      </div>
+      <div class="loop-content" style="padding-bottom:0">
+        <div class="loop-tag">loop closes</div>
+        <div class="loop-title">New subscriber becomes the next sharer</div>
+        <div class="loop-desc">Their photo goes live after the next meetup. They share it to their contacts. The loop runs again — now with 31 distribution nodes instead of 30.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     02 — MEETUP AS FUNNEL
+══════════════════════════════════ -->
+<div class="section" id="s2">
+  <div class="sec-num">Section 02</div>
+  <div class="sec-title">The weekly meetup is the top of funnel</div>
+  <div class="sec-intro">The meetup is not just a community event. It is the <strong>most powerful sales moment in the entire system.</strong> Structure it to convert.</div>
+
+  <div class="funnel-wrap">
+    <div class="funnel-block" style="border-radius:10px 10px 0 0;border-bottom:none;background:var(--surface)">
+      <span class="funnel-tag ft-amber">top of funnel</span>
+      <div class="funnel-label">Awareness</div>
+      <div class="funnel-title">Member shares meetup photo to WhatsApp contacts</div>
+      <div class="funnel-desc">Contact sees a real photo of their friend having a great time. Curiosity is immediate. "What is this? Where do they go every Saturday?"</div>
+    </div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-block" style="border-top:none;border-bottom:none">
+      <span class="funnel-tag ft-purple">invitation</span>
+      <div class="funnel-label">First touch</div>
+      <div class="funnel-title">Invited to attend next meetup — free first visit</div>
+      <div class="funnel-desc">The invite link in the WhatsApp message brings them to a simple landing screen: next meetup date, location, what to expect. One tap to RSVP. No payment yet.</div>
+    </div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-block" style="border-top:none;border-bottom:none">
+      <span class="funnel-tag ft-blue">experience</span>
+      <div class="funnel-label">The meetup</div>
+      <div class="funnel-title">They attend · meet people · feel the community</div>
+      <div class="funnel-desc">This is the product demo. No pitch needed. At the end of the session, the founder or team member says: <em>"If you'd like to keep coming, the app is AED 20 a month — it's where everything lives."</em></div>
+    </div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-block" style="border-radius:0 0 10px 10px;border-top:none;background:var(--green-bg);border-color:var(--green-bd)">
+      <span class="funnel-tag ft-green">conversion</span>
+      <div class="funnel-label">Subscription</div>
+      <div class="funnel-title">They download the app · subscribe AED 20/month</div>
+      <div class="funnel-desc">They've already experienced the value. The subscription is a no-brainer. Their photo from next week's meetup goes into the app — and they share it to their contacts. Loop repeats.</div>
+    </div>
+  </div>
+
+  <div class="infobox amber">
+    <div class="infobox-title">The conversion moment happens in person — not in the app</div>
+    <div class="infobox-body">Design every meetup to have a natural closing moment. It does not need to be a sales pitch. It needs to be: <strong>a warm mention that the app is where this community lives, and joining is easy.</strong> The experience has already done the selling.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     03 — WHAT TO BUILD
+══════════════════════════════════ -->
+<div class="section" id="s3">
+  <div class="sec-num">Section 03</div>
+  <div class="sec-title">What to build — ruthlessly minimal</div>
+  <div class="sec-intro">Everything built serves the loop or the subscription. <strong>If a feature does neither, it does not get built in Phase 1.</strong></div>
+
+  <div class="build-table-wrap">
+    <table class="build-table">
+      <thead><tr><th>Feature</th><th>Approach</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Onboarding</td>
+          <td><span class="tag-build tag-custom">build</span><br>Name + phone OTP + neighbourhood. 3 fields. Subscription via in-app purchase on first login.</td>
+          <td>Fastest path from share link to subscribed member. Every extra step loses a user.</td>
+        </tr>
+        <tr>
+          <td>Event photo gallery</td>
+          <td><span class="tag-build tag-custom">build</span><br>Photo grid per meetup. One-tap WhatsApp share with pre-written caption + invite link baked in.</td>
+          <td>This is the loop engine. It gets built and tested first — before any other screen.</td>
+        </tr>
+        <tr>
+          <td>Upcoming meetups</td>
+          <td><span class="tag-build tag-custom">build</span><br>List of upcoming sessions with RSVP. First meetup is free (no payment). Subscription already active for returning members.</td>
+          <td>The meetup is the funnel. The app needs to surface it clearly and make RSVP frictionless.</td>
+        </tr>
+        <tr>
+          <td>Fitness classes</td>
+          <td><span class="tag-build tag-link">deep link</span><br>Class schedule in app. "Join" button deep-links into the existing Microsoft Teams meeting.</td>
+          <td>Classes already run on Teams. Don't rebuild what works. One day of dev, not six weeks.</td>
+        </tr>
+        <tr>
+          <td>Subscription billing</td>
+          <td><span class="tag-build tag-shelf">off the shelf</span><br>Apple/Google in-app purchase or RevenueCat SDK. AED 20/month. No custom payment flow needed.</td>
+          <td>RevenueCat handles billing, receipts, and renewal across both platforms out of the box.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     04 — SCREENS
+══════════════════════════════════ -->
+<div class="section" id="s4">
+  <div class="sec-num">Section 04</div>
+  <div class="sec-title">The 3 screens — what the member sees</div>
+  <div class="sec-intro">Three screens deliver the entire loop. The dev builds Screen 2 first — because the loop can be manually tested with just the gallery and share button before the rest of the app exists.</div>
+
+  <div class="mockup-row">
+
+    <!-- Screen 1 -->
+    <div class="phone-wrap">
+      <div class="phone-label-sm">Sign up</div>
+      <div class="phone-shell">
+        <div class="phone-screen-inner">
+          <div class="pscreen">
+            <div style="text-align:center;padding:10px 0 6px">
+              <div style="font-family:'Instrument Serif',Georgia,serif;font-size:20px;color:var(--ink);letter-spacing:-.3px">2nd Innings</div>
+              <div style="font-size:10px;color:var(--muted);font-family:'DM Mono',monospace;margin-top:3px">Your community in UAE</div>
+            </div>
+            <div class="ps-divider"></div>
+            <div class="ps-label" style="margin-top:6px">Your name</div>
+            <div class="ps-field">Ramesh Kumar</div>
+            <div class="ps-label" style="margin-top:8px">Mobile number</div>
+            <div class="ps-field">+971 50 ··· ····</div>
+            <div class="ps-label" style="margin-top:8px">Neighbourhood</div>
+            <div class="ps-field" style="display:flex;justify-content:space-between;align-items:center"><span>Dubai Marina</span><span style="color:var(--hint)">▾</span></div>
+            <div class="ps-btn-main" style="margin-top:14px">Send OTP →</div>
+            <div class="ps-btn-note">3 fields · done in 30 seconds</div>
+            <div style="margin-top:auto;padding-top:12px;text-align:center">
+              <div style="font-size:10px;color:var(--hint);font-family:'DM Mono',monospace">AED 20 / month</div>
+              <div style="font-size:9px;color:var(--hint);font-family:'DM Mono',monospace;margin-top:2px">billed after first meetup</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen 2 -->
+    <div class="phone-wrap">
+      <div class="phone-label-sm">Photo gallery</div>
+      <div class="phone-shell">
+        <div class="phone-screen-inner">
+          <div class="pscreen">
+            <div class="ps-topbar">
+              <div class="ps-logo">2nd Innings</div>
+              <div class="ps-notif"><div class="ps-notif-dot"></div></div>
+            </div>
+            <div class="ps-divider"></div>
+            <div class="ps-section">Marina Meetup · Apr 12 · 18 members</div>
+            <div class="ps-photo-grid">
+              <div class="ps-photo" style="background:#e1f5ee">🏃</div>
+              <div class="ps-photo" style="background:#faeeda">☕</div>
+              <div class="ps-photo" style="background:#e8e6fd">🧘</div>
+              <div class="ps-photo" style="background:#dceeff">🤝</div>
+            </div>
+            <div style="font-size:10px;color:var(--muted);text-align:center;margin:6px 0;font-family:'DM Mono',monospace">Tap a photo to share</div>
+            <div class="ps-share-btn">Share to WhatsApp</div>
+            <div class="ps-share-sub" style="margin-top:4px">Invite your contacts to join next week</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen 3 -->
+    <div class="phone-wrap">
+      <div class="phone-label-sm">Meetups & classes</div>
+      <div class="phone-shell">
+        <div class="phone-screen-inner">
+          <div class="pscreen">
+            <div class="ps-topbar">
+              <div class="ps-logo">This week</div>
+              <div style="font-size:10px;font-family:'DM Mono',monospace;color:var(--hint)">Apr 2026</div>
+            </div>
+            <div class="ps-divider"></div>
+            <div class="ps-section">Upcoming meetup</div>
+            <div class="ps-event-card">
+              <div class="ps-event-img">🌅</div>
+              <div class="ps-event-body">
+                <div class="ps-event-title">Morning Walk · Marina</div>
+                <div class="ps-event-meta">Sat Apr 19 · 7:00 AM</div>
+                <div class="ps-event-spots">8 spots left · free for new members</div>
+                <div class="ps-event-foot">
+                  <span class="ps-subscribe-badge">Members only</span>
+                  <span class="ps-price">RSVP →</span>
+                </div>
+              </div>
+            </div>
+            <div class="ps-section" style="margin-top:8px">Fitness classes</div>
+            <div class="ps-class-item">
+              <div class="ps-class-icon">🧘</div>
+              <div class="ps-class-info">
+                <div class="ps-class-title">Chair Yoga</div>
+                <div class="ps-class-meta">Mon · 10:00 AM · Coach Priya</div>
+              </div>
+              <div class="ps-join-btn">Join Teams</div>
+            </div>
+            <div class="ps-class-item">
+              <div class="ps-class-icon">💪</div>
+              <div class="ps-class-info">
+                <div class="ps-class-title">Knee Strength</div>
+                <div class="ps-class-meta">Wed · 9:00 AM · Coach Ravi</div>
+              </div>
+              <div class="ps-join-btn">Join Teams</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="infobox blue">
+    <div class="infobox-title">Build order</div>
+    <div class="infobox-body"><strong>Screen 2 first</strong> — gallery + share button. Test the loop manually before anything else. Then Screen 1 — onboarding + subscription. Then Screen 3 — meetups + Teams links. This order means the growth engine is live in Week 2, not Week 4.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     05 — FITNESS
+══════════════════════════════════ -->
+<div class="section" id="s5">
+  <div class="sec-num">Section 05</div>
+  <div class="sec-title">Fitness classes — minimum work, maximum continuity</div>
+  <div class="sec-intro">Classes run on Microsoft Teams today. <strong>Keep it that way.</strong> The app surfaces the schedule and drops members directly into the Teams meeting with one tap. Zero disruption, one day of dev work.</div>
+
+  <div style="display:flex;gap:28px;align-items:flex-start;flex-wrap:wrap;margin-top:8px">
+    <div class="phone-wrap" style="flex-shrink:0">
+      <div class="phone-label-sm">Classes tab</div>
+      <div class="phone-shell">
+        <div class="phone-screen-inner">
+          <div class="pscreen">
+            <div class="ps-topbar">
+              <div class="ps-logo">Fitness Classes</div>
+              <div style="font-size:10px;font-family:'DM Mono',monospace;color:var(--hint)">this week</div>
+            </div>
+            <div class="ps-divider"></div>
+            <div class="ps-class-item">
+              <div class="ps-class-icon">🧘</div>
+              <div class="ps-class-info">
+                <div class="ps-class-title">Chair Yoga</div>
+                <div class="ps-class-meta">Mon · 10:00 AM · Coach Priya</div>
+              </div>
+              <div class="ps-join-btn">Join Teams</div>
+            </div>
+            <div class="ps-class-item">
+              <div class="ps-class-icon">🧠</div>
+              <div class="ps-class-info">
+                <div class="ps-class-title">Mindfulness</div>
+                <div class="ps-class-meta">Wed · 9:00 AM · Coach Anita</div>
+              </div>
+              <div class="ps-join-btn">Join Teams</div>
+            </div>
+            <div class="ps-class-item">
+              <div class="ps-class-icon">💪</div>
+              <div class="ps-class-info">
+                <div class="ps-class-title">Knee Strength</div>
+                <div class="ps-class-meta">Fri · 11:00 AM · Coach Ravi</div>
+              </div>
+              <div class="ps-join-btn">Join Teams</div>
+            </div>
+            <div style="text-align:center;margin-top:8px;font-size:9px;color:var(--hint);font-family:'DM Mono',monospace">opens Microsoft Teams</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="flex:1;min-width:220px;display:flex;flex-direction:column;gap:12px;padding-top:8px">
+      <div class="infobox green" style="margin-bottom:0">
+        <div class="infobox-title">What gets built</div>
+        <div class="infobox-body">A schedule screen. Each class has a title, coach, time, and a <strong>Join Teams button</strong> that deep-links into the existing Teams URL. Schedule managed via Supabase table — ops updates it directly, no admin panel needed.</div>
+      </div>
+      <div class="infobox purple" style="margin-bottom:0">
+        <div class="infobox-title">What does not get built</div>
+        <div class="infobox-body">No in-app video. No live streaming infrastructure. No recording library. Teams handles all of that. This is purely navigation. <strong>Dev time: 1 day.</strong></div>
+      </div>
+      <div class="infobox amber" style="margin-bottom:0">
+        <div class="infobox-title">Future upgrade</div>
+        <div class="infobox-body">At 100+ subscribers — evaluate migrating to native in-app video (Agora or Daily.co SDK). That is a Month 3 decision based on real retention data, not an assumption made today.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     06 — WHO TO HIRE
+══════════════════════════════════ -->
+<div class="section" id="s6">
+  <div class="sec-num">Section 06</div>
+  <div class="sec-title">Who to hire — Flutter full-stack developer</div>
+  <div class="sec-intro">One person owns the entire build — app, backend, and App Store submission. <strong>Flutter</strong> is the right call: single codebase for iOS and Android, strong UAE freelance market, and Supabase integrates cleanly. The hardest part is not writing the code — it is getting through Apple review.</div>
+
+  <div class="hire-card">
+    <div class="hire-card-head">
+      <div class="hire-card-role">Flutter Developer — Full Stack</div>
+      <div class="hire-card-type">Freelancer · owns build to publish</div>
+    </div>
+    <div class="hire-card-body">
+      <div class="hire-item"><strong>Must have published</strong> at least 2 apps live on both App Store and Play Store. Ask for the app names — search them, verify they exist and are maintained.</div>
+      <div class="hire-item"><strong>Supabase or Firebase experience</strong> — auth, storage, real-time. Should not need to figure out backend basics during your sprint.</div>
+      <div class="hire-item"><strong>Has handled App Store review before</strong> — specifically, has dealt with a rejection and resolved it. Apple review for a new app takes 7–14 days and almost always rejects once. Your dev must know this process cold.</div>
+      <div class="hire-item"><strong>In-app purchase integration experience</strong> — RevenueCat or native StoreKit. Subscription billing is a common failure point for first-time publishers.</div>
+      <div class="hire-item"><strong>Deep link experience</strong> — Branch.io or Firebase Dynamic Links. Referral tracking from the WhatsApp share back to a specific signup is what makes the loop measurable.</div>
+    </div>
+  </div>
+
+  <div class="infobox green">
+    <div class="infobox-title">Interview question that separates shipped from unshipped</div>
+    <div class="infobox-body">Ask: <strong>"Walk me through the last app you submitted to the App Store — what got rejected and how did you fix it?"</strong> Anyone who has genuinely shipped has a specific story. Someone who hasn't will give a vague answer or say it went through smoothly first time — which almost never happens.</div>
+  </div>
+
+  <div class="infobox amber">
+    <div class="infobox-title">The App Store timeline is the biggest risk in the 30-day plan</div>
+    <div class="infobox-body">Apple review: <strong>7–14 days.</strong> Play Store: 3–7 days. The dev must submit by <strong>Day 14</strong> to hit a Day 30 live date. Any rejection adds another 3–5 days. Build this buffer in from Day 1 — it is not optional.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     07 — 30-DAY PLAN
+══════════════════════════════════ -->
+<div class="section" id="s7">
+  <div class="sec-num">Section 07</div>
+  <div class="sec-title">30-day execution plan</div>
+  <div class="sec-intro">Four weeks, one output per week. The loop is tested manually in Week 1 — before a line of code is written. This is intentional: <strong>validate that people actually share before building the thing that makes sharing easier.</strong></div>
+
+  <div class="timeline">
+
+    <div class="tl-row">
+      <div class="tl-left">
+        <div class="tl-week">Week 1<br>Days 1–7</div>
+      </div>
+      <div class="tl-right">
+        <div class="tl-dot-wrap">
+          <div class="tl-dot"></div>
+          <div class="tl-title">Validate the loop — no code needed</div>
+        </div>
+        <div class="tl-context">Before hiring anyone or building anything: run the loop manually this week. Take photos at the meetup. WhatsApp them to the 30 members individually. Ask them to forward to one contact with the message. Count how many people respond. If even 3 new people show interest — the loop is real and you build it.</div>
+        <div class="tl-items">
+          <div class="tl-item"><span class="tl-who tw-ops">Ops</span>Run this week's meetup. Team member captures photos throughout — candid, natural. Goal: 15–20 usable photos.</div>
+          <div class="tl-item"><span class="tl-who tw-ops">Ops</span>WhatsApp photos to all 30 members with a manual invite message: "Share this with one friend who might enjoy joining us next Saturday." Track every reply and every new RSVP that comes from it.</div>
+          <div class="tl-item"><span class="tl-who tw-ops">Ops</span>Interview and hire Flutter dev. Use the App Store rejection question. Check the app store links they give you — open the apps, use them briefly, see if they feel solid.</div>
+          <div class="tl-item"><span class="tl-who tw-dev">Dev</span>On hire: set up Supabase project. Create users, sessions, event_photos tables. Configure Auth with OTP. Set up two storage buckets: one for full-res photos, one for admin access. This is the foundation everything else builds on.</div>
+        </div>
+        <div class="tl-outcome"><strong>Week 1 output:</strong> Manual loop tested. At least 3 new RSVP enquiries from member shares. Flutter dev hired and Supabase live.</div>
+      </div>
+    </div>
+
+    <div class="tl-row">
+      <div class="tl-left">
+        <div class="tl-week">Week 2<br>Days 8–14</div>
+      </div>
+      <div class="tl-right">
+        <div class="tl-dot-wrap">
+          <div class="tl-dot"></div>
+          <div class="tl-title">Gallery + share button live · submit to stores</div>
+        </div>
+        <div class="tl-context">The photo gallery and WhatsApp share button are the only things that matter this week. Get those two things working and the loop moves from manual to automatic. The app does not need to be beautiful — it needs to be functional enough that a member can see their photo and share it in two taps.</div>
+        <div class="tl-items">
+          <div class="tl-item"><span class="tl-who tw-dev">Dev</span>Build onboarding screen: name, phone OTP, neighbourhood. Write user row to Supabase on verify. Clean, large text — this demographic needs readable UI.</div>
+          <div class="tl-item"><span class="tl-who tw-dev">Dev</span>Build photo gallery screen. Photos pulled from Supabase storage. Each photo has a one-tap WhatsApp share button. Pre-written caption with Branch.io invite link baked in — so every share is tracked back to a specific member.</div>
+          <div class="tl-item"><span class="tl-who tw-dev">Dev</span>Integrate RevenueCat for AED 20/month subscription. In-app purchase on both platforms. This must be working before store submission — Apple will test it.</div>
+          <div class="tl-item"><span class="tl-who tw-dev">Dev</span>Submit to App Store and Play Store by end of Day 14. This is non-negotiable. Review takes 7–14 days. Submit now or the 30-day plan breaks.</div>
+          <div class="tl-item"><span class="tl-who tw-ops">Ops</span>Run second meetup. Upload photos to Supabase — share WhatsApp notification to existing 30 members. New RSVPs from Week 1 manual loop: invite them to attend free.</div>
+          <div class="tl-item"><span class="tl-who tw-mkt">Mkt</span>Post 3 event photos to Instagram with location tag. One 60-second founder video from the meetup — face to camera, no script. WhatsApp status every day with a photo from the event.</div>
+        </div>
+        <div class="tl-outcome"><strong>Week 2 output:</strong> App submitted to both stores. Gallery + share button working. First new subscribers from Week 1 loop converting.</div>
+      </div>
+    </div>
+
+    <div class="tl-row">
+      <div class="tl-left">
+        <div class="tl-week">Week 3<br>Days 15–21</div>
+      </div>
+      <div class="tl-right">
+        <div class="tl-dot-wrap">
+          <div class="tl-dot"></div>
+          <div class="tl-title">App approved · meetup screen + Teams links live</div>
+        </div>
+        <div class="tl-context">App Store approval expected this week. The moment it is live, send WhatsApp to all 30 existing members: "The app is live — download it, see your photos, invite your friends." This is the first moment the loop runs at full speed. Have the ops team ready to onboard any new members who download same day.</div>
+        <div class="tl-items">
+          <div class="tl-item"><span class="tl-who tw-dev">Dev</span>Build meetup screen: upcoming sessions with RSVP. Free first session logic — no payment prompt for first-time attendees. Returning members see their subscription status.</div>
+          <div class="tl-item"><span class="tl-who tw-dev">Dev</span>Build fitness classes screen. Schedule from Supabase table. "Join Teams" button deep-links into the existing Teams meeting URL for each class. Ops updates the schedule directly in Supabase — no admin panel needed.</div>
+          <div class="tl-item"><span class="tl-who tw-dev">Dev</span>If App Store rejects — dev fixes the flagged issue same day and resubmits. Common rejections: missing privacy policy, subscription terms not clearly displayed, screenshots not matching actual app. Have these ready in advance.</div>
+          <div class="tl-item"><span class="tl-who tw-ops">Ops</span>Run 2 meetups this week — 2 content moments, 2 rounds of photo sharing. Scale to a second location if possible. More events = more loop cycles = faster growth.</div>
+          <div class="tl-item"><span class="tl-who tw-ops">Ops</span>Personal WhatsApp to every new subscriber within 2 hours of signup: a voice note from the founder. 30 seconds. "Welcome to 2nd Innings — see you at the next meetup." This retention move costs nothing and keeps new members from going cold.</div>
+        </div>
+        <div class="tl-outcome"><strong>Week 3 output:</strong> App live on both stores. Full app functional. Loop running automatically. Target: 60 subscribers.</div>
+      </div>
+    </div>
+
+    <div class="tl-row">
+      <div class="tl-left">
+        <div class="tl-week">Week 4<br>Days 22–30</div>
+      </div>
+      <div class="tl-right">
+        <div class="tl-dot-wrap">
+          <div class="tl-dot"></div>
+          <div class="tl-title">Compound the loop · hit 100</div>
+        </div>
+        <div class="tl-context">The loop is now running with real users. Week 4 is about removing friction and compounding what's working. Look at the Branch.io data: which member's shares are converting the most new sign-ups? Those are your most valuable community nodes — give them attention, recognition, and make sure they keep coming to meetups.</div>
+        <div class="tl-items">
+          <div class="tl-item"><span class="tl-who tw-dev">Dev</span>Bug fixes from first real users. Specifically: OTP delivery issues, photo upload speed, share button not opening WhatsApp correctly on some devices. Fix within 24 hours of each report.</div>
+          <div class="tl-item"><span class="tl-who tw-dev">Dev</span>Build a simple ops upload page — web-based, password protected. Team uploads meetup photos without needing Supabase dashboard access. This removes a technical dependency from the ops team and makes the loop faster to run each week.</div>
+          <div class="tl-item"><span class="tl-who tw-ops">Ops</span>3 meetups this week across 2 locations. Each meetup is a content event and a conversion event. At the end of each: one mention of the app, one invite to subscribe. Keep it warm, not salesy.</div>
+          <div class="tl-item"><span class="tl-who tw-ops">Ops</span>Track which new members came from which existing member's WhatsApp share. The members driving the most referrals are your community leaders — acknowledge them at the meetup. Recognition is the most powerful retention tool this demographic responds to.</div>
+          <div class="tl-item"><span class="tl-who tw-mkt">Mkt</span>Pull Branch.io data: signups by source, share rate per member, which WhatsApp message variant converts best. This data shapes the Month 2 plan — which locations to add, which content format works, whether the free-first-meetup mechanic is converting.</div>
+        </div>
+        <div class="tl-outcome"><strong>Week 4 output:</strong> 100 paying subscribers. Loop running without manual intervention. Data in hand for Month 2 expansion.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div>
+<script>
+(function(){
+  var sections=['s1','s2','s3','s4','s5','s6','s7'];
+  var nav=document.getElementById('main-nav');
+  var links=nav.querySelectorAll('.nav-item');
+  var tops={};
+  function recalc(){
+    sections.forEach(function(id){
+      var el=document.getElementById(id);
+      if(el) tops[id]=el.getBoundingClientRect().top+window.scrollY;
+    });
+  }
+  function onScroll(){
+    var y=window.scrollY+80;
+    var active='s1';
+    sections.forEach(function(id){
+      if(tops[id]&&y>=tops[id]) active=id;
+    });
+    links.forEach(function(l){
+      l.classList.toggle('active',l.getAttribute('href')==='#'+active);
+    });
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',recalc);
+  setTimeout(recalc,300);
+})();
+</script>
+</body>
+</html>
