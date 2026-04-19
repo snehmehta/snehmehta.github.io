@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>2nd Inning Consultancy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --ink:#1a1a18;
+  --muted:#5a5a56;
+  --border:rgba(30,30,20,.12);
+  --surface:#f7f6f1;
+  --card:#ffffff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;background:#fff;color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.page{max-width:860px;margin:0 auto;padding:40px 24px 60px}
+.title{font-family:'DM Sans',system-ui,sans-serif;font-size:32px;font-weight:500;line-height:1.15;margin-bottom:10px}
+.subtitle{color:var(--muted);font-size:14px;letter-spacing:.03em;margin-bottom:28px}
+.grid{display:grid;gap:18px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(0,0,0,.08)}
+.card-title{font-size:18px;font-weight:500;margin-bottom:8px}
+.card-text{font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:16px}
+.card-link{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;background:#111;color:#fff;text-decoration:none;font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em}
+.card-link:hover{opacity:.95}
+.note{margin-top:30px;font-size:12px;color:var(--muted);line-height:1.7}
+</style>
+</head>
+<body>
+  <div class="page">
+    <h1 class="title">2nd Inning Consultancy</h1>
+    <p class="subtitle">Two pages for the consultancy: the working draft and the first-phase strategy.</p>
+    <div class="grid">
+      <article class="card">
+        <div class="card-title">Draft</div>
+        <p class="card-text">The working draft version of the 2nd Innings strategy and design direction.</p>
+        <a class="card-link" href="2nd_innings_v3.html">Open draft</a>
+      </article>
+      <article class="card">
+        <div class="card-title">First phase</div>
+        <p class="card-text">The first-phase blueprint that defines the initial launch and growth loop.</p>
+        <a class="card-link" href="2nd_innings_blueprint.html">Open first phase</a>
+      </article>
+    </div>
+    <p class="note">Note: both pages are already included in the workspace and linked here for consultancy review.</p>
+  </div>
+</body>
+</html>
