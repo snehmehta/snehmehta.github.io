@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Nutriolite — WhatsApp Distribution Agent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --ink:#1a1a18;--muted:#5a5a56;--hint:#9a9a94;
+  --border:rgba(30,30,20,.10);--border2:rgba(30,30,20,.22);
+  --surface:#f5f4ef;--card:#fff;
+  --green-bg:#e1f5ee;--green-bd:#5dcaa5;--green-tx:#085041;
+  --amber-bg:#faeeda;--amber-bd:#ef9f27;--amber-tx:#633806;
+  --purple-bg:#e8e6fd;--purple-bd:#afa9ec;--purple-tx:#3c3489;
+  --blue-bg:#dceeff;--blue-bd:#90c0f0;--blue-tx:#0c447c;
+  --wa-green:#25D366;--wa-dark:#075E54;--wa-light:#DCF8C6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#fff;font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);font-size:14px;line-height:1.65;-webkit-font-smoothing:antialiased}
+
+.doc{max-width:860px;margin:0 auto;padding:0 48px 80px}
+
+/* ── COVER ── */
+.cover{padding:52px 0 36px;border-bottom:2px solid var(--ink);margin-bottom:0}
+.cover-agency{font-family:'Instrument Serif',Georgia,serif;font-size:14px;font-style:italic;color:var(--muted);margin-bottom:8px}
+.cover-title{font-size:30px;font-weight:500;letter-spacing:-.5px;line-height:1.12;color:var(--ink);margin-bottom:6px}
+.cover-sub{font-size:13px;color:var(--muted);font-family:'DM Mono',monospace;margin-bottom:28px;letter-spacing:.01em}
+.cover-meta{display:grid;grid-template-columns:1fr 1fr;border-top:0.5px solid var(--border2);padding-top:16px}
+.cm-col{display:flex;flex-direction:column;gap:4px}
+.cm-col:last-child{text-align:right}
+.cm-item{font-size:12px;color:var(--muted);font-family:'DM Mono',monospace;line-height:1.8}
+.cm-item strong{color:var(--ink);font-weight:500}
+
+/* ── STICKY NAV ── */
+.sticky-nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:0.5px solid var(--border2);padding:0 48px;margin:0 -48px;display:flex;gap:0;overflow-x:auto}
+.nav-item{padding:11px 16px;font-size:11px;font-family:'DM Mono',monospace;letter-spacing:.5px;color:var(--hint);white-space:nowrap;border-bottom:2px solid transparent;text-decoration:none;transition:color .15s,border-color .15s;display:flex;align-items:center;gap:6px}
+.nav-item:hover{color:var(--ink)}
+.nav-item.active{color:var(--ink);border-bottom-color:var(--ink)}
+.nav-num{font-size:9px;opacity:.5}
+
+/* ── SECTION ── */
+.section{padding-top:48px;margin-bottom:8px}
+.sec-num{font-size:10px;font-family:'DM Mono',monospace;letter-spacing:2px;color:var(--hint);margin-bottom:3px;text-transform:uppercase}
+.sec-title{font-size:18px;font-weight:500;color:var(--ink);margin-bottom:14px;padding-bottom:10px;border-bottom:0.5px solid var(--border2);line-height:1.3}
+.sec-intro{font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:20px}
+.sec-intro strong{color:var(--ink);font-weight:500}
+
+/* ── INFOBOX ── */
+.infobox{border-radius:10px;padding:13px 16px;margin-bottom:18px}
+.infobox.purple{background:var(--purple-bg);border:0.5px solid var(--purple-bd)}
+.infobox.green{background:var(--green-bg);border:0.5px solid var(--green-bd)}
+.infobox.amber{background:var(--amber-bg);border:0.5px solid var(--amber-bd)}
+.infobox.blue{background:var(--blue-bg);border:0.5px solid var(--blue-bd)}
+.infobox-title{font-size:11px;font-weight:500;font-family:'DM Mono',monospace;letter-spacing:.5px;margin-bottom:5px;text-transform:uppercase}
+.infobox.purple .infobox-title{color:var(--purple-tx)}
+.infobox.green .infobox-title{color:var(--green-tx)}
+.infobox.amber .infobox-title{color:var(--amber-tx)}
+.infobox.blue .infobox-title{color:var(--blue-tx)}
+.infobox-body{font-size:12px;line-height:1.65;color:var(--muted)}
+.infobox-body strong{color:var(--ink);font-weight:500}
+
+/* ── WHATSAPP MOCKUP ── */
+.wa-phone-wrap{display:grid;grid-template-columns:160px 1fr;gap:20px;margin-bottom:16px;align-items:start}
+.wa-shell{background:#111;border-radius:24px;padding:8px;border:5px solid #1a1a1a;flex-shrink:0}
+.wa-screen{border-radius:17px;overflow:hidden;background:#ECE5DD}
+.wa-header{background:var(--wa-dark);padding:10px 12px;display:flex;align-items:center;gap:10px}
+.wa-header-avatar{width:32px;height:32px;border-radius:50%;background:var(--wa-green);display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:600;flex-shrink:0}
+.wa-header-info{flex:1}
+.wa-header-name{font-size:12px;font-weight:600;color:#fff;line-height:1.2}
+.wa-header-sub{font-size:9px;color:rgba(255,255,255,.65);font-family:'DM Mono',monospace}
+.wa-body{padding:10px 8px;display:flex;flex-direction:column;gap:6px;min-height:200px;background:#ECE5DD}
+.wa-msg{padding:7px 10px;border-radius:8px;font-size:11px;line-height:1.5;max-width:90%;position:relative}
+.wa-msg.in{background:#fff;border-bottom-left-radius:2px;align-self:flex-start}
+.wa-msg.out{background:var(--wa-light);border-bottom-right-radius:2px;align-self:flex-end}
+.wa-msg-time{font-size:9px;color:var(--hint);text-align:right;margin-top:2px;font-family:'DM Mono',monospace}
+.wa-voice{display:flex;align-items:center;gap:8px;padding:6px 10px;background:#fff;border-radius:20px;align-self:flex-start}
+.wa-voice-icon{width:28px;height:28px;border-radius:50%;background:var(--wa-dark);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.wa-voice-icon svg{width:13px;height:13px;fill:#fff}
+.wa-voice-wave{flex:1;height:24px;display:flex;align-items:center;gap:2px}
+.wa-wave-bar{width:3px;border-radius:2px;background:var(--wa-dark);opacity:.6}
+.wa-voice-dur{font-size:10px;color:var(--muted);font-family:'DM Mono',monospace}
+
+/* ── DASHBOARD MOCKUP ── */
+.dash{border:0.5px solid var(--border2);border-radius:10px;overflow:hidden;margin-bottom:16px}
+.dash-bar{background:var(--ink);padding:9px 14px;display:flex;align-items:center;gap:8px}
+.dash-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.2)}
+.dash-title{color:rgba(255,255,255,.85);font-size:11px;font-family:'DM Mono',monospace;letter-spacing:.3px;margin-left:4px}
+.dash-body{padding:14px;background:#fff}
+.dash-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin-bottom:14px}
+.dash-stat{background:var(--surface);border:0.5px solid var(--border);border-radius:8px;padding:10px 12px}
+.dash-stat-val{font-size:20px;font-weight:500;color:var(--ink);letter-spacing:-.5px;font-family:'Instrument Serif',Georgia,serif}
+.dash-stat-label{font-size:10px;color:var(--hint);font-family:'DM Mono',monospace;letter-spacing:.5px;text-transform:uppercase;margin-top:2px}
+.dash-stat-delta{font-size:10px;margin-top:4px}
+.dash-stat-delta.up{color:var(--green-tx)}
+.dash-stat-delta.amber{color:var(--amber-tx)}
+
+/* ── CRM CARD ── */
+.crm{border:0.5px solid var(--border2);border-radius:10px;overflow:hidden;margin-bottom:16px}
+.crm-bar{background:var(--ink);padding:9px 14px;display:flex;align-items:center;gap:8px}
+.crm-bar-title{color:rgba(255,255,255,.85);font-size:11px;font-family:'DM Mono',monospace;letter-spacing:.3px}
+.crm-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.2)}
+.crm-body{padding:14px;background:#fff}
+.crm-card{background:var(--surface);border:0.5px solid var(--border2);border-radius:8px;padding:12px;margin-bottom:10px}
+.crm-card:last-child{margin-bottom:0}
+.crm-card-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.crm-avatar{width:30px;height:30px;border-radius:50%;background:var(--purple-bg);color:var(--purple-tx);font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'DM Mono',monospace}
+.crm-name{font-size:13px;font-weight:500;color:var(--ink)}
+.crm-source{font-size:11px;color:var(--muted);font-family:'DM Mono',monospace}
+.crm-badge{font-size:10px;font-family:'DM Mono',monospace;font-weight:500;padding:2px 8px;border-radius:4px;margin-left:auto;white-space:nowrap;letter-spacing:.3px}
+.cb-new{background:var(--purple-bg);color:var(--purple-tx)}
+.cb-qual{background:var(--green-bg);color:var(--green-tx)}
+.cb-follow{background:var(--amber-bg);color:var(--amber-tx)}
+.crm-fields{display:flex;flex-direction:column;gap:0}
+.crm-field{display:flex;justify-content:space-between;align-items:baseline;font-size:11px;padding:5px 0;border-bottom:0.5px solid var(--border)}
+.crm-field:last-child{border-bottom:none}
+.cf-label{color:var(--muted);font-family:'DM Mono',monospace}
+.cf-val{color:var(--ink);font-weight:500;text-align:right}
+.cf-val.purple{color:var(--purple-tx)}
+.cf-val.green{color:var(--green-tx)}
+.cf-val.amber{color:var(--amber-tx)}
+.crm-note{border-radius:6px;padding:9px 11px;margin-top:10px;font-size:11px;line-height:1.6;border-left:2px solid}
+.crm-note.purple{background:var(--purple-bg);color:var(--purple-tx);border-left-color:#7F77DD}
+.crm-note.green{background:var(--green-bg);color:var(--green-tx);border-left-color:#1D9E75}
+.crm-note.amber{background:var(--amber-bg);color:var(--amber-tx);border-left-color:#EF9F27}
+.crm-note-label{font-family:'DM Mono',monospace;font-size:9px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;opacity:.7}
+
+/* ── CALL TRANSCRIPT ── */
+.call-wrap{display:grid;grid-template-columns:160px 1fr;gap:20px;margin-bottom:16px;align-items:start}
+.phone-shell{background:#111;border-radius:24px;padding:8px;border:5px solid #1a1a1a;flex-shrink:0}
+.phone-screen{border-radius:17px;overflow:hidden}
+.call-screen{padding:20px 14px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px;min-height:220px;justify-content:space-between}
+.call-label{font-size:9px;letter-spacing:.12em;opacity:.5;font-family:'DM Mono',monospace;color:#fff}
+.call-avatar{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:500;font-family:'DM Mono',monospace;margin:0 auto}
+.call-name{color:#fff;font-size:13px;font-weight:500;margin-top:4px}
+.call-sub{color:rgba(255,255,255,.45);font-size:10px;font-family:'DM Mono',monospace}
+.call-btns{display:flex;gap:18px;justify-content:center}
+.call-btn{width:38px;height:38px;border-radius:50%;border:none;display:flex;align-items:center;justify-content:center}
+.call-btn svg{width:16px;height:16px;fill:#fff}
+.transcript-col{}
+.tr-header{font-size:10px;font-family:'DM Mono',monospace;letter-spacing:1.5px;color:var(--hint);text-transform:uppercase;margin-bottom:10px}
+.bubbles{display:flex;flex-direction:column;gap:7px}
+.brow{display:flex;flex-direction:column}
+.brow.right{align-items:flex-end}
+.bspk{font-size:9px;color:var(--hint);font-family:'DM Mono',monospace;margin-bottom:2px}
+.brow.right .bspk{text-align:right}
+.bubble{padding:8px 11px;border-radius:10px;font-size:12px;line-height:1.5;max-width:88%}
+.bubble.ai{background:var(--purple-bg);color:var(--purple-tx);border-bottom-left-radius:3px}
+.bubble.agent{background:var(--surface);border:0.5px solid var(--border2);color:var(--ink);border-bottom-right-radius:3px}
+.bubble.wa{background:var(--wa-light);color:#1a1a18;border-bottom-right-radius:3px}
+
+/* ── PHONE BAR ── */
+.phone-bar{border-radius:8px;padding:9px 14px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.phone-bar-left{font-size:12px;font-weight:500;color:#fff}
+.phone-bar-right{font-size:10px;font-family:'DM Mono',monospace;color:rgba(255,255,255,.55)}
+
+/* ── COMMERCIAL ── */
+.commercial{border:1.5px solid var(--ink);border-radius:12px;padding:24px 28px;margin-bottom:24px}
+.comm-title{font-family:'Instrument Serif',Georgia,serif;font-size:22px;font-weight:400;color:var(--ink);margin-bottom:18px;letter-spacing:-.3px}
+.comm-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:16px}
+.comm-item{padding:12px 0;border-bottom:0.5px solid var(--border)}
+.comm-item:nth-child(odd){padding-right:24px;border-right:0.5px solid var(--border)}
+.comm-item:nth-child(even){padding-left:24px}
+.comm-item:nth-last-child(-n+2){border-bottom:none}
+.comm-label{font-size:10px;color:var(--hint);font-family:'DM Mono',monospace;letter-spacing:.5px;margin-bottom:3px;text-transform:uppercase}
+.comm-val{font-size:15px;font-weight:500;color:var(--ink)}
+.comm-sub{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* ── SCOPE TABLE ── */
+.scope-wrap{border:0.5px solid var(--border2);border-radius:10px;overflow:hidden;margin-top:16px}
+.scope-table{width:100%;border-collapse:collapse}
+.scope-table th{font-size:10px;font-family:'DM Mono',monospace;letter-spacing:1px;text-transform:uppercase;color:var(--hint);text-align:left;padding:9px 14px;border-bottom:0.5px solid var(--border2);font-weight:500;background:var(--surface)}
+.scope-table td{font-size:12px;padding:10px 14px;vertical-align:top;border-bottom:0.5px solid var(--border);color:var(--ink);line-height:1.55}
+.scope-table tr:last-child td{border-bottom:none}
+.scope-table td:first-child{color:var(--muted);font-family:'DM Mono',monospace;font-size:11px;width:36px;text-align:center}
+
+/* ── NETWORK DIAGRAM ── */
+.network{display:flex;flex-direction:column;align-items:center;gap:0;margin-bottom:16px;border:0.5px solid var(--border2);border-radius:10px;overflow:hidden}
+.net-row{display:flex;justify-content:center;align-items:center;gap:16px;padding:16px}
+.net-row.shaded{background:var(--surface)}
+.net-node{display:flex;flex-direction:column;align-items:center;gap:6px}
+.net-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;border:0.5px solid var(--border2)}
+.net-label{font-size:10px;font-family:'DM Mono',monospace;color:var(--muted);text-align:center;max-width:70px;line-height:1.4}
+.net-arrow{color:var(--border2);font-size:18px;display:flex;align-items:center}
+.net-divider{width:100%;height:0.5px;background:var(--border2)}
+.net-badge{font-size:9px;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:4px;font-weight:500}
+
+/* ── CLEAN LIST ── */
+ul.clean{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px}
+ul.clean li{font-size:12px;color:var(--muted);display:flex;gap:10px;line-height:1.55;align-items:flex-start}
+ul.clean li::before{content:'—';color:var(--border2);flex-shrink:0;font-size:12px;margin-top:1px}
+ul.clean li strong{color:var(--ink);font-weight:500}
+
+@media(max-width:640px){
+  .doc{padding:0 24px 60px}
+  .sticky-nav{padding:0 24px;margin:0 -24px}
+  .call-wrap{grid-template-columns:1fr}
+  .wa-phone-wrap{grid-template-columns:1fr}
+  .phone-shell{width:140px;margin:0 auto}
+  .wa-shell{width:160px;margin:0 auto}
+  .comm-grid{grid-template-columns:1fr}
+  .comm-item{padding-right:0!important;padding-left:0!important;border-right:none!important}
+  .dash-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<div class="doc">
+
+<!-- ── COVER ── -->
+<div class="cover">
+  <div class="cover-agency">Your Company × Nutriolite Distribution Network</div>
+  <div class="cover-title">WhatsApp Distribution Agent —<br>How it works, end to end</div>
+  <div class="cover-sub">A visual walkthrough of the distributor POC · April 2026</div>
+  <div class="cover-meta">
+    <div class="cm-col">
+      <div class="cm-item"><strong>Prepared for</strong> Nutriolite Distributor Network</div>
+      <div class="cm-item"><strong>What we're building</strong> WhatsApp Agent + Voice + Dashboard</div>
+      <div class="cm-item"><strong>Target users</strong> Distributors & agents at all levels</div>
+    </div>
+    <div class="cm-col">
+      <div class="cm-item"><strong>Date</strong> April 2026</div>
+      <div class="cm-item"><strong>Valid for</strong> 30 days</div>
+      <div class="cm-item"><strong>Confidential</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── STICKY NAV ── -->
+<nav class="sticky-nav" id="main-nav">
+  <a class="nav-item active" href="#s1"><span class="nav-num">01</span>Overview</a>
+  <a class="nav-item" href="#s2"><span class="nav-num">02</span>Log a lead</a>
+  <a class="nav-item" href="#s3"><span class="nav-num">03</span>Auto reminder</a>
+  <a class="nav-item" href="#s4"><span class="nav-num">04</span>Lead captured</a>
+  <a class="nav-item" href="#s5"><span class="nav-num">05</span>Voice call</a>
+  <a class="nav-item" href="#s6"><span class="nav-num">06</span>Dashboard</a>
+  <a class="nav-item" href="#s7"><span class="nav-num">07</span>Investment</a>
+</nav>
+
+<!-- ════════════════════════════════════════
+     01 — OVERVIEW
+════════════════════════════════════════ -->
+<div class="section" id="s1">
+  <div class="sec-num">Section 01</div>
+  <div class="sec-title">The problem we're solving — and how</div>
+  <div class="sec-intro">Nutriolite's distribution network has many levels — a top distributor, mid-level agents, and frontline sellers. Today, leads are lost in WhatsApp chats, reminders are forgotten, and nobody has a clear view of who is following up with whom. <strong>We fix all of this with a single WhatsApp agent</strong> that every level of the network can use — branded for Nutriolite, no app to download.</div>
+
+  <div class="network">
+    <div class="net-row shaded" style="padding:20px 24px;width:100%;flex-direction:column;gap:4px;align-items:flex-start">
+      <div style="font-size:10px;font-family:'DM Mono',monospace;letter-spacing:1.5px;color:var(--hint);text-transform:uppercase;margin-bottom:12px">Distribution hierarchy</div>
+      <div style="display:flex;justify-content:center;width:100%;align-items:center;gap:0;flex-wrap:wrap;row-gap:8px">
+        <div class="net-node">
+          <div class="net-icon" style="background:#1a1a18;border-color:#1a1a18">👤</div>
+          <div class="net-label" style="color:var(--ink);font-weight:500">Top Distributor</div>
+          <span class="net-badge" style="background:var(--ink);color:#fff;margin-top:2px">you</span>
+        </div>
+        <div class="net-arrow" style="margin:0 8px">→</div>
+        <div class="net-node">
+          <div class="net-icon" style="background:var(--purple-bg);border-color:var(--purple-bd)">👤</div>
+          <div class="net-label">Mid-level agents</div>
+          <span class="net-badge" style="background:var(--purple-bg);color:var(--purple-tx);margin-top:2px">level 2</span>
+        </div>
+        <div class="net-arrow" style="margin:0 8px">→</div>
+        <div class="net-node">
+          <div class="net-icon" style="background:var(--blue-bg);border-color:var(--blue-bd)">👤</div>
+          <div class="net-label">Frontline sellers</div>
+          <span class="net-badge" style="background:var(--blue-bg);color:var(--blue-tx);margin-top:2px">level 3+</span>
+        </div>
+        <div class="net-arrow" style="margin:0 8px">→</div>
+        <div class="net-node">
+          <div class="net-icon" style="background:var(--green-bg);border-color:var(--green-bd)">🟢</div>
+          <div class="net-label">WhatsApp Agent</div>
+          <span class="net-badge" style="background:var(--green-bg);color:var(--green-tx);margin-top:2px">shared tool</span>
+        </div>
+      </div>
+    </div>
+    <div class="net-divider"></div>
+    <div class="net-row" style="width:100%;gap:24px;flex-wrap:wrap;justify-content:flex-start;padding:16px 24px">
+      <div style="display:flex;gap:10px;align-items:flex-start">
+        <div style="width:28px;height:28px;background:var(--green-bg);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">💬</div>
+        <div>
+          <div style="font-size:12px;font-weight:500;color:var(--ink)">Log leads via WhatsApp</div>
+          <div style="font-size:11px;color:var(--muted)">Text, voice note, or image</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start">
+        <div style="width:28px;height:28px;background:var(--amber-bg);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">📞</div>
+        <div>
+          <div style="font-size:12px;font-weight:500;color:var(--ink)">Auto follow-up calls</div>
+          <div style="font-size:11px;color:var(--muted)">AI calls the prospect</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start">
+        <div style="width:28px;height:28px;background:var(--purple-bg);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">📊</div>
+        <div>
+          <div style="font-size:12px;font-weight:500;color:var(--ink)">Admin dashboard</div>
+          <div style="font-size:11px;color:var(--muted)">Full visibility across network</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     02 — LOG A LEAD
+════════════════════════════════════════ -->
+<div class="section" id="s2">
+  <div class="sec-num">Section 02</div>
+  <div class="sec-title">Any agent logs a lead — text, voice, or image</div>
+  <div class="sec-intro">Say you're a field agent and you just met someone interested in Nutriolite products. You open the <strong>WhatsApp agent</strong>, drop a voice note, type a name, or even send a photo of a business card. The agent extracts and stores all details automatically — no form filling, no CRM login needed.</div>
+
+  <div class="wa-phone-wrap">
+    <div class="wa-shell">
+      <div class="wa-screen">
+        <div class="wa-header">
+          <div class="wa-header-avatar" style="background:var(--wa-dark);border:1.5px solid var(--wa-green);font-size:9px;font-weight:700">NUT</div>
+          <div class="wa-header-info">
+            <div class="wa-header-name">Nutriolite Agent</div>
+            <div class="wa-header-sub">online · nutriolite.ai</div>
+          </div>
+        </div>
+        <div class="wa-body">
+          <!-- Voice note from agent -->
+          <div style="align-self:flex-end;display:flex;flex-direction:column;align-items:flex-end;gap:2px">
+            <div style="font-size:9px;color:var(--hint);font-family:'DM Mono',monospace">You</div>
+            <div style="background:var(--wa-light);border-radius:8px;border-bottom-right-radius:2px;padding:6px 10px;display:flex;align-items:center;gap:8px;max-width:90%">
+              <div style="width:26px;height:26px;border-radius:50%;background:var(--wa-dark);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#fff"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/></svg>
+              </div>
+              <div style="flex:1;display:flex;align-items:center;gap:2px;height:22px">
+                <div style="width:2px;height:8px;background:var(--wa-dark);border-radius:2px;opacity:.5"></div>
+                <div style="width:2px;height:14px;background:var(--wa-dark);border-radius:2px;opacity:.7"></div>
+                <div style="width:2px;height:10px;background:var(--wa-dark);border-radius:2px;opacity:.5"></div>
+                <div style="width:2px;height:18px;background:var(--wa-dark);border-radius:2px;opacity:.9"></div>
+                <div style="width:2px;height:12px;background:var(--wa-dark);border-radius:2px;opacity:.6"></div>
+                <div style="width:2px;height:8px;background:var(--wa-dark);border-radius:2px;opacity:.4"></div>
+                <div style="width:2px;height:16px;background:var(--wa-dark);border-radius:2px;opacity:.8"></div>
+                <div style="width:2px;height:10px;background:var(--wa-dark);border-radius:2px;opacity:.5"></div>
+              </div>
+              <div style="font-size:9px;color:var(--muted);font-family:'DM Mono',monospace">0:14</div>
+            </div>
+          </div>
+          <!-- AI reply -->
+          <div style="align-self:flex-start;display:flex;flex-direction:column;gap:2px">
+            <div style="font-size:9px;color:var(--hint);font-family:'DM Mono',monospace">Nutriolite Agent</div>
+            <div class="wa-msg in" style="font-size:10px">Got it! I heard:<br><strong>Ravi Mehta · +91 99887 76655</strong><br>Interested in: Weight management kit<br><br>Shall I log this as a new lead? ✅</div>
+          </div>
+          <!-- Confirm -->
+          <div style="align-self:flex-end;display:flex;flex-direction:column;align-items:flex-end;gap:2px">
+            <div class="wa-msg out" style="font-size:10px">Yes, log it 👍</div>
+          </div>
+          <!-- Logged -->
+          <div style="align-self:flex-start;display:flex;flex-direction:column;gap:2px">
+            <div class="wa-msg in" style="font-size:10px">✅ Lead logged!<br>Reminder set for <strong>tomorrow 10 AM</strong><br>I'll auto-call Ravi at that time.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="transcript-col">
+      <div class="tr-header">What can you send?</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="background:var(--surface);border:0.5px solid var(--border2);border-radius:8px;padding:10px 12px">
+          <div style="font-size:11px;font-weight:500;color:var(--ink);margin-bottom:3px">🎤 Voice note</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.5">"Just met Ravi, interested in weight kit, call him tomorrow" — agent extracts name, number, product, timing automatically.</div>
+        </div>
+        <div style="background:var(--surface);border:0.5px solid var(--border2);border-radius:8px;padding:10px 12px">
+          <div style="font-size:11px;font-weight:500;color:var(--ink);margin-bottom:3px">💬 Chat note</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.5">Type the lead details in plain language. The agent parses and stores it structured.</div>
+        </div>
+        <div style="background:var(--surface);border:0.5px solid var(--border2);border-radius:8px;padding:10px 12px">
+          <div style="font-size:11px;font-weight:500;color:var(--ink);margin-bottom:3px">📷 Business card photo</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.5">Snap a photo — agent reads the card, extracts name + number, logs the lead instantly.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="infobox green">
+    <div class="infobox-title">No app download. No form. No training needed.</div>
+    <div class="infobox-body">Every agent in the network — from top distributor to newest recruit — uses the same Nutriolite WhatsApp number. It works on any phone, in <strong>Hindi or English</strong>, and takes under 30 seconds to log a lead.</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     03 — AUTO REMINDER + VOICE CALL
+════════════════════════════════════════ -->
+<div class="section" id="s3">
+  <div class="sec-num">Section 03</div>
+  <div class="sec-title">Reminder set — AI auto-calls the prospect</div>
+  <div class="sec-intro">Once a lead is logged, the system sets a follow-up reminder. At the scheduled time, our <strong>AI voice agent calls the prospect automatically</strong> — introducing Nutriolite, understanding their interest, and scheduling a callback or meeting with the agent. No manual dialling needed.</div>
+
+  <div class="phone-bar" style="background:var(--wa-dark)">
+    <span class="phone-bar-left">Nutriolite — Follow-up Call</span>
+    <span class="phone-bar-right">Auto-triggered · 10:00 AM</span>
+  </div>
+
+  <div class="call-wrap">
+    <div class="phone-shell">
+      <div class="phone-screen">
+        <div class="call-screen" style="background:#0a1a10">
+          <span class="call-label">outgoing · auto follow-up</span>
+          <div>
+            <div class="call-avatar" style="background:var(--wa-dark)">RM</div>
+            <div class="call-name">Calling Ravi...</div>
+            <div class="call-sub">nutriolite · lead follow-up</div>
+          </div>
+          <span style="font-size:11px;color:rgba(255,255,255,.3);font-family:'DM Mono',monospace">00:01:34</span>
+        </div>
+      </div>
+    </div>
+    <div class="transcript-col">
+      <div class="tr-header">AI call transcript</div>
+      <div class="bubbles">
+        <div class="brow"><div class="bspk">AI Agent</div><div class="bubble ai">Hi Ravi! I'm calling from Nutriolite — Anita from your network asked me to reach out. Do you have 2 minutes?</div></div>
+        <div class="brow right"><div class="bspk">Ravi</div><div class="bubble agent">Sure, go ahead.</div></div>
+        <div class="brow"><div class="bspk">AI Agent</div><div class="bubble ai">Great! I understand you were interested in our weight management kit. What's your main goal — weight loss, energy, or overall wellness?</div></div>
+        <div class="brow right"><div class="bspk">Ravi</div><div class="bubble agent">Mainly weight loss, I've been struggling for a year.</div></div>
+        <div class="brow"><div class="bspk">AI Agent</div><div class="bubble ai">Understood! Anita will share a personalised recommendation. When's a good time for a 10-minute call with her — morning or evening?</div></div>
+        <div class="brow right"><div class="bspk">Ravi</div><div class="bubble agent">Evening is better, after 6 PM.</div></div>
+        <div class="brow"><div class="bspk">AI Agent</div><div class="bubble ai">Perfect — I've noted that. Anita will call you this evening. Thanks Ravi, have a great day!</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="infobox amber">
+    <div class="infobox-title">Agent notified instantly</div>
+    <div class="infobox-body">Right after the call, the agent (Anita) gets a <strong>WhatsApp summary</strong> — Ravi's interest, preferred callback time, and a ready-to-send talking points note. She calls at 6 PM, already prepared.</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     04 — LEAD CAPTURED IN SYSTEM
+════════════════════════════════════════ -->
+<div class="section" id="s4">
+  <div class="sec-num">Section 04</div>
+  <div class="sec-title">Lead is fully captured — zero manual entry</div>
+  <div class="sec-intro">The moment a lead is logged and the AI call happens, the entire record is saved — who logged it, which agent, what was discussed, and what the next action is. <strong>The top distributor can see every lead across the entire network</strong> without asking anyone.</div>
+
+  <div class="crm">
+    <div class="crm-bar">
+      <div class="crm-dot"></div><div class="crm-dot"></div><div class="crm-dot"></div>
+      <span class="crm-bar-title">Nutriolite CRM — Lead: Ravi Mehta</span>
+    </div>
+    <div class="crm-body">
+      <div class="crm-card" style="border-color:#5dcaa5">
+        <div class="crm-card-top">
+          <div class="crm-avatar">RM</div>
+          <div>
+            <div class="crm-name">Ravi Mehta</div>
+            <div class="crm-source">logged by Anita · weight management kit</div>
+          </div>
+          <span class="crm-badge cb-follow">follow-up set</span>
+        </div>
+        <div class="crm-fields">
+          <div class="crm-field"><span class="cf-label">phone</span><span class="cf-val">+91 99887 76655</span></div>
+          <div class="crm-field"><span class="cf-label">interest</span><span class="cf-val">Weight management kit</span></div>
+          <div class="crm-field"><span class="cf-label">goal</span><span class="cf-val">Weight loss · 1 year struggle</span></div>
+          <div class="crm-field"><span class="cf-label">best_time</span><span class="cf-val">Evening · after 6 PM</span></div>
+          <div class="crm-field"><span class="cf-label">logged_by</span><span class="cf-val">Anita (Level 2 Agent)</span></div>
+          <div class="crm-field"><span class="cf-label">ai_call_done</span><span class="cf-val green">✓ Completed · 1m 34s</span></div>
+        </div>
+        <div class="crm-note purple">
+          <div class="crm-note-label">AI summary for agent</div>
+          Ravi is motivated — one year of struggle signals high intent. He responded positively to personalised recommendation framing. Lead the callback with a success story. Suggest the 30-day starter pack. High close probability.
+        </div>
+      </div>
+      <div class="crm-card">
+        <div class="crm-card-top">
+          <div class="crm-avatar" style="background:var(--blue-bg);color:var(--blue-tx)">SK</div>
+          <div>
+            <div class="crm-name">Sunita Kapoor</div>
+            <div class="crm-source">logged by Deepak · immunity range</div>
+          </div>
+          <span class="crm-badge cb-new">new</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     05 — VOICE AGENT DEMO
+════════════════════════════════════════ -->
+<div class="section" id="s5">
+  <div class="sec-num">Section 05</div>
+  <div class="sec-title">The voice agent — what it sounds like</div>
+  <div class="sec-intro">The AI voice agent calls prospects <strong>in a natural, conversational tone</strong> — it introduces itself as calling on behalf of Nutriolite, asks qualifying questions, and hands off warm leads back to the agent. It can also handle inbound calls from prospects who WhatsApp in and request a call.</div>
+
+  <div class="phone-bar" style="background:#1a1a18">
+    <span class="phone-bar-left">Nutriolite Distribution — Inbound Enquiry</span>
+    <span class="phone-bar-right">Prospect called in</span>
+  </div>
+
+  <div class="call-wrap">
+    <div class="phone-shell">
+      <div class="phone-screen">
+        <div class="call-screen" style="background:#111116">
+          <span class="call-label">inbound · prospect</span>
+          <div>
+            <div class="call-avatar" style="background:#2d5a27">NL</div>
+            <div class="call-name">Nutriolite Agent</div>
+            <div class="call-sub">ai · nutritional advisor</div>
+          </div>
+          <span style="font-size:11px;color:rgba(255,255,255,.3);font-family:'DM Mono',monospace">00:02:11</span>
+        </div>
+      </div>
+    </div>
+    <div class="transcript-col">
+      <div class="tr-header">Inbound prospect call</div>
+      <div class="bubbles">
+        <div class="brow"><div class="bspk">AI Agent</div><div class="bubble ai">Thank you for calling Nutriolite! I'm here to help you find the right product. What health goal are you working towards?</div></div>
+        <div class="brow right"><div class="bspk">Prospect</div><div class="bubble agent">My friend told me about the energy supplements, I want to know more.</div></div>
+        <div class="brow"><div class="bspk">AI Agent</div><div class="bubble ai">Great choice! The Nutriolite Stamina+ range is popular for sustained energy. Are you looking for daily use, or around workout/sport activities?</div></div>
+        <div class="brow right"><div class="bspk">Prospect</div><div class="bubble agent">Daily use mainly. I feel tired by afternoon.</div></div>
+        <div class="brow"><div class="bspk">AI Agent</div><div class="bubble ai">Understood — sounds like the Daily Energy Pack would suit you. I'll connect you with an advisor who can share pricing and how to get started. Can I take your name?</div></div>
+        <div class="brow right"><div class="bspk">Prospect</div><div class="bubble agent">Preethi.</div></div>
+        <div class="brow"><div class="bspk">AI Agent</div><div class="bubble ai">Perfect, Preethi! I've noted your interest. Your Nutriolite advisor will WhatsApp you within 30 minutes with details.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="infobox blue">
+    <div class="infobox-title">The agent never loses a lead</div>
+    <div class="infobox-body">Whether a prospect calls, WhatsApps, or is introduced by a field agent — <strong>every conversation is logged, every follow-up is scheduled</strong>, and the right agent in the network is notified immediately.</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     06 — ADMIN DASHBOARD
+════════════════════════════════════════ -->
+<div class="section" id="s6">
+  <div class="sec-num">Section 06</div>
+  <div class="sec-title">Admin dashboard — full visibility, zero chasing</div>
+  <div class="sec-intro">The top distributor gets a <strong>live dashboard</strong> showing all leads across the entire network — broken down by agent, product, and stage. No more calling agents to ask what's happening. Everything is visible, real-time, from one screen.</div>
+
+  <div class="dash">
+    <div class="dash-bar">
+      <div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div>
+      <span class="dash-title">Nutriolite Admin — Network Overview</span>
+      <span style="font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,.4);margin-left:auto">Live · Apr 30, 2026</span>
+    </div>
+    <div class="dash-body">
+      <div class="dash-grid">
+        <div class="dash-stat">
+          <div class="dash-stat-val">142</div>
+          <div class="dash-stat-label">Total leads</div>
+          <div class="dash-stat-delta up">↑ 18 this week</div>
+        </div>
+        <div class="dash-stat">
+          <div class="dash-stat-val">38</div>
+          <div class="dash-stat-label">Converted</div>
+          <div class="dash-stat-delta up">↑ 26.7% rate</div>
+        </div>
+        <div class="dash-stat">
+          <div class="dash-stat-val">67</div>
+          <div class="dash-stat-label">Follow-ups due</div>
+          <div class="dash-stat-delta amber">⚠ 12 overdue</div>
+        </div>
+        <div class="dash-stat">
+          <div class="dash-stat-val">24</div>
+          <div class="dash-stat-label">Active agents</div>
+          <div class="dash-stat-delta up">↑ 3 new this month</div>
+        </div>
+      </div>
+
+      <!-- Agent breakdown table -->
+      <div style="font-size:10px;font-family:'DM Mono',monospace;letter-spacing:1px;color:var(--hint);text-transform:uppercase;margin-bottom:10px">Agent performance — top 4</div>
+      <div class="scope-wrap" style="margin-top:0">
+        <table class="scope-table">
+          <thead><tr><th>Agent</th><th>Leads logged</th><th>Converted</th><th>Overdue</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr>
+              <td style="width:auto;text-align:left;color:var(--ink);font-family:'DM Sans',sans-serif">Anita Sharma</td>
+              <td>32</td>
+              <td style="color:var(--green-tx);font-weight:500">12</td>
+              <td style="color:var(--amber-tx)">2</td>
+              <td><span class="crm-badge cb-qual">on track</span></td>
+            </tr>
+            <tr>
+              <td style="width:auto;text-align:left;color:var(--ink);font-family:'DM Sans',sans-serif">Deepak Patel</td>
+              <td>28</td>
+              <td style="color:var(--green-tx);font-weight:500">9</td>
+              <td style="color:var(--amber-tx)">5</td>
+              <td><span class="crm-badge cb-follow">needs push</span></td>
+            </tr>
+            <tr>
+              <td style="width:auto;text-align:left;color:var(--ink);font-family:'DM Sans',sans-serif">Meena Joshi</td>
+              <td>21</td>
+              <td style="color:var(--green-tx);font-weight:500">8</td>
+              <td style="color:var(--amber-tx)">1</td>
+              <td><span class="crm-badge cb-qual">on track</span></td>
+            </tr>
+            <tr>
+              <td style="width:auto;text-align:left;color:var(--ink);font-family:'DM Sans',sans-serif">Rajan Nair</td>
+              <td>14</td>
+              <td style="color:var(--green-tx);font-weight:500">4</td>
+              <td style="color:var(--amber-tx)">4</td>
+              <td><span class="crm-badge cb-new">new agent</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+        <div style="flex:1;min-width:180px;background:var(--green-bg);border:0.5px solid var(--green-bd);border-radius:8px;padding:11px 14px">
+          <div style="font-size:10px;font-family:'DM Mono',monospace;letter-spacing:.5px;text-transform:uppercase;color:var(--green-tx);margin-bottom:4px">Top product interest</div>
+          <div style="font-size:12px;color:var(--ink);font-weight:500">Weight Management Kit — 41%</div>
+          <div style="font-size:11px;color:var(--muted)">followed by Immunity Range (28%)</div>
+        </div>
+        <div style="flex:1;min-width:180px;background:var(--amber-bg);border:0.5px solid var(--amber-bd);border-radius:8px;padding:11px 14px">
+          <div style="font-size:10px;font-family:'DM Mono',monospace;letter-spacing:.5px;text-transform:uppercase;color:var(--amber-tx);margin-bottom:4px">AI calls made today</div>
+          <div style="font-size:12px;color:var(--ink);font-weight:500">23 calls · 31 min total</div>
+          <div style="font-size:11px;color:var(--muted)">8 prospects expressed interest</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     07 — INVESTMENT
+════════════════════════════════════════ -->
+
+
+</div><!-- end .doc -->
+
+<script>
+(function(){
+  var sections=['s1','s2','s3','s4','s5','s6','s7'];
+  var nav=document.getElementById('main-nav');
+  var links=nav.querySelectorAll('.nav-item');
+  var tops={};
+
+  function recalc(){
+    sections.forEach(function(id){
+      var el=document.getElementById(id);
+      if(el) tops[id]=el.getBoundingClientRect().top+window.scrollY;
+    });
+  }
+
+  function onScroll(){
+    var y=window.scrollY+80;
+    var active='s1';
+    sections.forEach(function(id){
+      if(tops[id]&&y>=tops[id]) active=id;
+    });
+    links.forEach(function(l){
+      l.classList.toggle('active',l.getAttribute('href')==='#'+active);
+    });
+  }
+
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',recalc);
+  setTimeout(recalc,300);
+})();
+</script>
+</body>
+</html>
